@@ -4,9 +4,17 @@
         <servlet-name>UsuarioController</servlet-name>
         <servlet-class>Controller.UsuarioController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SolicitudesController</servlet-name>
+        <servlet-class>Controller.SolicitudesController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/UsuarioController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SolicitudesController</servlet-name>
+        <url-pattern>/SolicitudesController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
