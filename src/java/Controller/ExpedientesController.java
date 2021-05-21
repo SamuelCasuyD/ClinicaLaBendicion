@@ -6,13 +6,11 @@
 package Controller;
 
 import API.ExpedientesAPI;
-import API.UsuarioAPI;
 import Models.ExpedientesDto;
-import Models.UsuarioDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,11 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author SammyKazzu
+ * @author Alexander Elias
  */
 public class ExpedientesController extends HttpServlet {
     
-    ExpedientesAPI expAPI = new  ExpedientesAPI();    
+        ExpedientesAPI expAPI = new  ExpedientesAPI();    
     List<ExpedientesDto> listaExpediente = new ArrayList<>();
 
     /**
@@ -37,10 +35,9 @@ public class ExpedientesController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-             throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-       String menu = request.getParameter("menu");
+         String menu = request.getParameter("menu");
         
         if (menu.equalsIgnoreCase("principal")){
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
@@ -54,10 +51,9 @@ public class ExpedientesController extends HttpServlet {
             
             request.getRequestDispatcher("Expedientes.jsp").forward(request, response);
         }else if (menu.equalsIgnoreCase("muestras")){
-            request.getRequestDispatcher("AnalisisMuestras.jsp").forward(request, response);
+            request.getRequestDispatcher("MuestrasController?menu=analisis").forward(request, response);
         }
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -70,7 +66,7 @@ public class ExpedientesController extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-             throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -84,7 +80,7 @@ public class ExpedientesController extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-             throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
