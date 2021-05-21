@@ -5,13 +5,15 @@
  */
 package Controller;
 
-import API.TipoMuestraAPI;
-import Models.TipoMuestraDTO;
+import API.ExpedientesAPI;
+import API.UsuarioAPI;
+import Models.ExpedientesDto;
+import Models.UsuarioDTO;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,11 +22,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author SammyKazzu
  */
-@WebServlet(name = "MuestrasController", urlPatterns = {"/MuestrasController"})
-public class MuestrasController extends HttpServlet {
+public class ExpedientesController extends HttpServlet {
     
-    TipoMuestraAPI ListMuestra = new TipoMuestraAPI();
-    List<TipoMuestraDTO> Muestra = new ArrayList<>();
+    ExpedientesAPI expAPI = new  ExpedientesAPI();    
+    List<ExpedientesDto> listaExpediente = new ArrayList<>();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,20 +40,24 @@ public class MuestrasController extends HttpServlet {
              throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String menu = request.getParameter("menu");
+       String menu = request.getParameter("menu");
         
         if (menu.equalsIgnoreCase("principal")){
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
         }
         
-        else if (menu.equalsIgnoreCase("analisis")){
+        else if (menu.equalsIgnoreCase("expedientes")){
         
-            Muestra = ListMuestra.ListarMuestras();
-            request.setAttribute("listMuestras", Muestra);
             
+            listaExpediente = expAPI.listarExpediente();
+            request.setAttribute("expedientes", listaExpediente);
+            
+            request.getRequestDispatcher("Expedientes.jsp").forward(request, response);
+        }else if (menu.equalsIgnoreCase("muestras")){
             request.getRequestDispatcher("AnalisisMuestras.jsp").forward(request, response);
         }
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

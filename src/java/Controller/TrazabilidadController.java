@@ -5,26 +5,18 @@
  */
 package Controller;
 
-import API.TipoMuestraAPI;
-import Models.TipoMuestraDTO;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author SammyKazzu
+ * @author Alexander Elias
  */
-@WebServlet(name = "MuestrasController", urlPatterns = {"/MuestrasController"})
-public class MuestrasController extends HttpServlet {
-    
-    TipoMuestraAPI ListMuestra = new TipoMuestraAPI();
-    List<TipoMuestraDTO> Muestra = new ArrayList<>();
+public class TrazabilidadController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,7 +28,7 @@ public class MuestrasController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-             throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
         String menu = request.getParameter("menu");
@@ -45,13 +37,12 @@ public class MuestrasController extends HttpServlet {
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
         }
         
-        else if (menu.equalsIgnoreCase("analisis")){
+        else if (menu.equalsIgnoreCase("trazabilidad")){
         
-            Muestra = ListMuestra.ListarMuestras();
-            request.setAttribute("listMuestras", Muestra);
-            
-            request.getRequestDispatcher("AnalisisMuestras.jsp").forward(request, response);
+                        
+            request.getRequestDispatcher("Trazabilidad.jsp").forward(request, response);
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -65,7 +56,7 @@ public class MuestrasController extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-             throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -79,7 +70,7 @@ public class MuestrasController extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-             throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 

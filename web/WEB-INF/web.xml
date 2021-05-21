@@ -4,9 +4,33 @@
         <servlet-name>UsuarioController</servlet-name>
         <servlet-class>Controller.UsuarioController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SolicitudesController</servlet-name>
+        <servlet-class>Controller.SolicitudesController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExpedientesController</servlet-name>
+        <servlet-class>Controller.ExpedientesController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TrazabilidadController</servlet-name>
+        <servlet-class>Controller.TrazabilidadController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/UsuarioController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SolicitudesController</servlet-name>
+        <url-pattern>/SolicitudesController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExpedientesController</servlet-name>
+        <url-pattern>/ExpedientesController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TrazabilidadController</servlet-name>
+        <url-pattern>/TrazabilidadController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
