@@ -64,6 +64,8 @@ public class MuestrasController extends HttpServlet {
             Muestra = ListMuestra.listUniMedida();
             request.setAttribute("medida", Muestra);
             
+            
+            
             request.getRequestDispatcher("CrearMuestra.jsp").forward(request, response);
         }
         //--CREAR MUESTAS MEDICAS--\\

@@ -13,8 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -209,7 +207,8 @@ public class TipoMuestraAPI {
                 //mues.setFechaCreacion(rs.getDate(9));                
                 mues.setEliminado(rs.getBoolean(10));
             }
-        } catch (SQLException e) {            
+        } catch (SQLException e) {
+            System.out.println("Mensaje:....." + e.getMessage());
         }
         return mues;
     }

@@ -49,7 +49,7 @@
                                     <a href="MuestrasController?menu=RestaurarMuestra&id=${list.getIdMuestra()}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true" data-toggle="tooltip" title="Restaurar">
                                         <i class="fas fa-undo-alt"></i>
                                     </a>
-                                    <a href="Consultas?accion=EliminarMuestra&id=${list.getIdMuestra()}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true" data-toggle="tooltip" title="Editar">
+                                    <a href="MuestrasController?menu=CardarDatos&id=${list.getIdMuestra()}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true" data-toggle="tooltip" title="Editar">
                                         <i class="far fa-edit"></i>
                                     </a>
                                 </div>
