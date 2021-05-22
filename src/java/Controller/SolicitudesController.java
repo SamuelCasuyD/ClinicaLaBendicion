@@ -12,7 +12,6 @@ import Models.EstadosSolicitudesDTO;
 import Models.SolicitudesMedicasDTO;
 import Models.TipoSolicitudDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -28,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "SolicitudesController", urlPatterns = {"/SolicitudesController"})
 public class SolicitudesController extends HttpServlet {
     
-      SolicitudesMedicasDTO findSolMedicById = new SolicitudesMedicasDTO();
+    SolicitudesMedicasDTO findSolMedicById = new SolicitudesMedicasDTO();
     SolicitudesMedicasAPI findSolMedicByIdAPI = new SolicitudesMedicasAPI();
     List<SolicitudesMedicasDTO> listS = new ArrayList<>(); 
 
@@ -42,10 +41,10 @@ public class SolicitudesController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-String menu = request.getParameter("menu");
+        throws ServletException, IOException {
         
+        response.setContentType("text/html;charset=UTF-8");
+        String menu = request.getParameter("menu");        
         
         TipoSolicitudAPI TSd_dao = new TipoSolicitudAPI();
         List<TipoSolicitudDTO> Tsolicitud = new ArrayList<>();
@@ -60,22 +59,25 @@ String menu = request.getParameter("menu");
         if (menu.equalsIgnoreCase("principal")){
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
         }
-        
+        //--      
         else if (menu.equalsIgnoreCase("mantenimiento")){ 
             
             request.getRequestDispatcher("SolicitudMedica.jsp").forward(request, response);
             
-        }else if(menu.equalsIgnoreCase("crearSolicitud")){
+        }
+        //--
+        else if(menu.equalsIgnoreCase("crearSolicitud")){
             
             request.getRequestDispatcher("CrearSolicitud.jsp").forward(request, response);
             
-        }else if(menu.equalsIgnoreCase("consultaSolicitudes")){            
+        }
+        //--
+        else if(menu.equalsIgnoreCase("consultaSolicitudes")){
             
-            
-            request.getRequestDispatcher("ConsultaSolicitudes.jsp").forward(request, response);
-            
-        }else if(menu.equalsIgnoreCase("Buscar")){
-       
+            request.getRequestDispatcher("ConsultaSolicitudes.jsp").forward(request, response);            
+        }
+        //--
+        else if(menu.equalsIgnoreCase("Buscar")){
          
             String codigoSolicitud = request.getParameter("txtSolicitud");  
             String numExpediente = request.getParameter("txtExpediente");
@@ -84,11 +86,7 @@ String menu = request.getParameter("menu");
             String nit = request.getParameter("txtNit");
             String estado = request.getParameter("slcEstado");
             String fechaInicio = request.getParameter("fechaInicio");
-            String fechaFin = request.getParameter("fechaFin");
-            
-            
-
-    
+            String fechaFin = request.getParameter("fechaFin");    
             
             if(codigoSolicitud.isEmpty())
                 codigoSolicitud = null;
@@ -105,12 +103,7 @@ String menu = request.getParameter("menu");
             if(fechaInicio.isEmpty())
                fechaInicio=null;
             if(fechaFin.isEmpty())
-               fechaFin=null;
-            
-            
-            
-            
-           
+               fechaFin=null;           
             if (codigoSolicitud==null &&numExpediente==null && 
                 numSoporte ==null && tipoSolicitud==null &&  nit==null && estado==null                    
                 && (fechaInicio==null || fechaFin ==null)) {
@@ -120,9 +113,7 @@ String menu = request.getParameter("menu");
                 
             }else{
                
-                listS = findSolMedicByIdAPI.buscarSolicitudesMedicas(codigoSolicitud, numExpediente, numSoporte, tipoSolicitud, nit, estado, fechaInicio, fechaFin);
-
-               
+                listS = findSolMedicByIdAPI.buscarSolicitudesMedicas(codigoSolicitud, numExpediente, numSoporte, tipoSolicitud, nit, estado, fechaInicio, fechaFin);              
                 
                 if  (listS.size()==0){
                     request.setAttribute("msj", "<div class='alert alert-warning alert-dismissible fade show' role='alert'>"
@@ -136,19 +127,13 @@ String menu = request.getParameter("menu");
                     request.getRequestDispatcher("ConsultaSolicitudes.jsp").forward(request, response);
                 }
             }
-                   
+        }
+        //--
+        else if(menu.equalsIgnoreCase("informacionGeneral")){
             
-            
-            
-            
-            
-            
-            
-        }else if(menu.equalsIgnoreCase("informacionGeneral")){            
-                
-                listS= findSolMedicByIdAPI.listarSolicitudes();
-                request.setAttribute("listSol",listS);
-                 request.getRequestDispatcher("SolicitudesController?menu=mantenimiento").forward(request, response);
+            listS= findSolMedicByIdAPI.listarSolicitudes();
+            request.setAttribute("listSol",listS);
+            request.getRequestDispatcher("SolicitudesController?menu=mantenimiento").forward(request, response);
         }
             else{
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
