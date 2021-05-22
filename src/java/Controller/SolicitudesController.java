@@ -12,7 +12,6 @@ import Models.EstadosSolicitudesDTO;
 import Models.SolicitudesMedicasDTO;
 import Models.TipoSolicitudDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -28,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "SolicitudesController", urlPatterns = {"/SolicitudesController"})
 public class SolicitudesController extends HttpServlet {
     
-      SolicitudesMedicasDTO findSolMedicById = new SolicitudesMedicasDTO();
+    SolicitudesMedicasDTO findSolMedicById = new SolicitudesMedicasDTO();
     SolicitudesMedicasAPI findSolMedicByIdAPI = new SolicitudesMedicasAPI();
     List<SolicitudesMedicasDTO> listS = new ArrayList<>(); 
 
@@ -42,10 +41,10 @@ public class SolicitudesController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-String menu = request.getParameter("menu");
+        throws ServletException, IOException {
         
+        response.setContentType("text/html;charset=UTF-8");
+        String menu = request.getParameter("menu");        
         
         TipoSolicitudAPI TSd_dao = new TipoSolicitudAPI();
         List<TipoSolicitudDTO> Tsolicitud = new ArrayList<>();
@@ -65,17 +64,18 @@ String menu = request.getParameter("menu");
             
             request.getRequestDispatcher("SolicitudMedica.jsp").forward(request, response);
             
-        }else if(menu.equalsIgnoreCase("crearSolicitud")){
+        }
+        else if(menu.equalsIgnoreCase("crearSolicitud")){
             
             request.getRequestDispatcher("CrearSolicitud.jsp").forward(request, response);
             
-        }else if(menu.equalsIgnoreCase("consultaSolicitudes")){            
-            
+        }
+        else if(menu.equalsIgnoreCase("consultaSolicitudes")){
             
             request.getRequestDispatcher("ConsultaSolicitudes.jsp").forward(request, response);
             
-        }else if(menu.equalsIgnoreCase("Buscar")){
-       
+        }
+        else if(menu.equalsIgnoreCase("Buscar")){       
          
             String codigoSolicitud = request.getParameter("txtSolicitud");  
             String numExpediente = request.getParameter("txtExpediente");
@@ -84,11 +84,7 @@ String menu = request.getParameter("menu");
             String nit = request.getParameter("txtNit");
             String estado = request.getParameter("slcEstado");
             String fechaInicio = request.getParameter("fechaInicio");
-            String fechaFin = request.getParameter("fechaFin");
-            
-            
-
-    
+            String fechaFin = request.getParameter("fechaFin");    
             
             if(codigoSolicitud.isEmpty())
                 codigoSolicitud = null;
