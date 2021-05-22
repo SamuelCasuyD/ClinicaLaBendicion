@@ -13,31 +13,25 @@ import Models.SolicitudesMedicasDTO;
 import Models.TipoSolicitudDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.Integer.parseInt;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import static javax.xml.bind.DatatypeConverter.parseDate;
 
 /**
  *
- * @author Alexander Elias
+ * @author SammyKazzu
  */
+@WebServlet(name = "SolicitudesController", urlPatterns = {"/SolicitudesController"})
 public class SolicitudesController extends HttpServlet {
     
-    SolicitudesMedicasDTO findSolMedicById = new SolicitudesMedicasDTO();
+      SolicitudesMedicasDTO findSolMedicById = new SolicitudesMedicasDTO();
     SolicitudesMedicasAPI findSolMedicByIdAPI = new SolicitudesMedicasAPI();
     List<SolicitudesMedicasDTO> listS = new ArrayList<>(); 
-    
-    
-    SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -48,9 +42,9 @@ public class SolicitudesController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String menu = request.getParameter("menu");
+String menu = request.getParameter("menu");
         
         
         TipoSolicitudAPI TSd_dao = new TipoSolicitudAPI();
@@ -174,7 +168,7 @@ public class SolicitudesController extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+             throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -188,7 +182,7 @@ public class SolicitudesController extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+             throws ServletException, IOException {
         processRequest(request, response);
     }
 
