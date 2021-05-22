@@ -10,8 +10,8 @@
             <div class="card-body">
                 
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="Controlador?menu=CrearMuestra" class="btn btn-outline-info" role="button" aria-pressed="true">Crear Muestra</a>
-                    <a href="Controlador?menu=MuestraEliminada" class="btn btn-outline-info" role="button" aria-pressed="true">Muestras Eliminadas</a>
+                    <a href="MuestrasController?menu=CrearMuestra" class="btn btn-outline-info" role="button" aria-pressed="true">Crear Muestra</a>
+                    <a href="MuestrasController?menu=MuestraEliminada" class="btn btn-outline-info" role="button" aria-pressed="true">Muestras Eliminadas</a>
                 </div>                
                 <hr>
                 
