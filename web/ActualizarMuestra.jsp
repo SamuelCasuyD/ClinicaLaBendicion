@@ -65,7 +65,7 @@
                                 <i class="fas fa-save fa-lg"> </i> Guardar
                             </button>        
                             
-                            <a class="btn btn-outline-secondary btn-md" href="Controlador?menu=CrearUsuario&accion=Cancelar" target='myIframe'>
+                            <a class="btn btn-outline-secondary btn-md" href="MuestrasController?menu=analisis">
                                 <i class="fas fa-window-close fa-lg"> </i> 
                                 Cancelar
                             </a>

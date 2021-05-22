@@ -1,8 +1,6 @@
 
 package Models;
 
-import java.util.Date;
-
 /**
  *
  * @author Alexander Elias
@@ -276,10 +274,7 @@ public class SolicitudesMedicasDTO {
 
     public void setDiasVencimiento(int diasVencimiento) {
         this.diasVencimiento = diasVencimiento;
-    }
-    
-    
-    
+    }   
     
     
 }
