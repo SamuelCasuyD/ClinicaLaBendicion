@@ -12,27 +12,40 @@
         <div class="card-body">
             <table id="example" class="table table-bordered table-striped small">
                 <thead align="center">
+                     <th style="text-align: center">#</th>
                     <th class="text-center">Codigo Solicitud</th>
                     <th class="text-center">Estado Solicitud</th>
                     <th class="text-center">Enviado por</th>
+                     <th class="text-center">Asignado a</th>
                     <th class="text-center">Fecha y hora de estado</th>
-                    <th class="text-center">Duración</th>                    
-                    <th class="text-center">Asignado a</th>
+                    <th class="text-center">Duración</th>  
+                    <th class="text-center">Acumulado</th> 
+                    <th class="text-center">Observaciones</th>
+                   
+                   
                                    
                 </thead>
 
 
                 <tbody align="center">
-
-                    <c:forEach var="exp" items="${expedientes}">
+                     <%! int contador = 1;%>
+                    <c:forEach var="tbz" items="${trazabilidad}">
                      <tr>
-                        <td>${exp.getNoExpediente()}</td>
-                        <td>${exp.getObservaciones()}</td>
-                        <td>${exp.getOrigen()}</td>
-                        <td>${exp.getOrigen()}</td>
+                        <td style="text-align: center"><%= contador%></td>
+                        <td>${tbz.getCodigoSolicitud()}</td>
+                        <td>${tbz.getNombreEstado()}</td>
+                        <td>${tbz.getEnviadoPor()}</td>
+                        <td>${tbz.getAsignadoA()}</td>
+                        <td>${tbz.getFecha()}</td>
+                        <td>${tbz.getDuracion()}</td>
+                        <td>${tbz.getAcumulado()}</td>
+                        <td>${tbz.getObservaciones()}</td>
                        
                     </tr>   
-                </c:forEach>                        
+                    
+                    <% contador++; %>   
+                </c:forEach>    
+                <% contador = 1; %>                    
                 </tbody>
             </table>  
         </div>  

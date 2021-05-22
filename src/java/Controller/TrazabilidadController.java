@@ -1,12 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
+import API.TrazabilidadAPI;
+import Models.TrazabilidadDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +16,10 @@ import javax.servlet.http.HttpServletResponse;
  * @author Alexander Elias
  */
 public class TrazabilidadController extends HttpServlet {
+    
+    TrazabilidadAPI listaTzbAPI = new TrazabilidadAPI();
+    List<TrazabilidadDTO> listaTzb = new ArrayList<>();
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,7 +41,10 @@ public class TrazabilidadController extends HttpServlet {
         }
         
         else if (menu.equalsIgnoreCase("trazabilidad")){
-        
+            
+            
+            listaTzb=listaTzbAPI.listarTrazabildad();
+            request.setAttribute("trazabilidad", listaTzb);
                         
             request.getRequestDispatcher("Trazabilidad.jsp").forward(request, response);
         }
