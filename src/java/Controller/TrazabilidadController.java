@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Controller;
 
 import API.TrazabilidadAPI;
@@ -17,9 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class TrazabilidadController extends HttpServlet {
     
-    TrazabilidadAPI listaTzbAPI = new TrazabilidadAPI();
+     TrazabilidadAPI listaTzbAPI = new TrazabilidadAPI();
     List<TrazabilidadDTO> listaTzb = new ArrayList<>();
-    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,7 +52,6 @@ public class TrazabilidadController extends HttpServlet {
                         
             request.getRequestDispatcher("Trazabilidad.jsp").forward(request, response);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
