@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ExpedientesController extends HttpServlet {
     
-        ExpedientesAPI expAPI = new  ExpedientesAPI();    
+      ExpedientesAPI expAPI = new  ExpedientesAPI();    
     List<ExpedientesDto> listaExpediente = new ArrayList<>();
 
     /**
@@ -36,10 +36,10 @@ public class ExpedientesController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-         String menu = request.getParameter("menu");
         
-        if (menu.equalsIgnoreCase("principal")){
+        response.setContentType("text/html;charset=UTF-8");
+        String menu = request.getParameter("menu");
+         if (menu.equalsIgnoreCase("principal")){
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
         }
         
