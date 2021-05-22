@@ -6,6 +6,7 @@
 package Controller;
 
 import API.TipoMuestraAPI;
+import Models.SolicitudesMedicasDTO;
 import Models.TipoMuestraDTO;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
@@ -27,6 +28,7 @@ public class MuestrasController extends HttpServlet {
     TipoMuestraAPI ListMuestra = new TipoMuestraAPI();
     List<TipoMuestraDTO> Muestra = new ArrayList<>();
     TipoMuestraDTO Create = new TipoMuestraDTO();
+    TipoMuestraDTO Edit = new TipoMuestraDTO();
     
     java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
 
@@ -64,7 +66,9 @@ public class MuestrasController extends HttpServlet {
             Muestra = ListMuestra.listUniMedida();
             request.setAttribute("medida", Muestra);
             
-            
+            Muestra = ListMuestra.ListarSolicitudes();
+            request.setAttribute("solicitud", Muestra);    
+
             
             request.getRequestDispatcher("CrearMuestra.jsp").forward(request, response);
         }
@@ -74,7 +78,9 @@ public class MuestrasController extends HttpServlet {
             String IdTipoMuestra = request.getParameter("slcMuestra");
             String Presentacion = request.getParameter("TxtPresentacion");    
             String Cantidad = request.getParameter("cantidad");
-            String UniMedida = request.getParameter("unidadmedida");            
+            String UniMedida = request.getParameter("unidadmedida");   
+            String idsolicitud = request.getParameter("idsolicitud");
+            
             boolean estado = false;
             
             Create.setIdTipoMuestra(parseInt(IdTipoMuestra));
@@ -83,6 +89,7 @@ public class MuestrasController extends HttpServlet {
             Create.setIdUnidadMedida(parseInt(UniMedida));            
             Create.setFechaCreacion(sqlDate);
             Create.setEliminado(estado);
+            Create.setIdMuestra(parseInt(idsolicitud));
             ListMuestra.CrearMuestra(Create);
             
             request.getRequestDispatcher("MuestrasController?menu=analisis").forward(request, response);
@@ -125,6 +132,39 @@ public class MuestrasController extends HttpServlet {
             IdMuestra = Integer.parseInt(request.getParameter("id"));
             ListMuestra.Restaurar(IdMuestra);
             request.getRequestDispatcher("MuestrasController?menu=MuestraEliminada").forward(request, response);
+        }
+        //--EDITAR LOS LAS MUESTAS--\\
+        else if(menu.equalsIgnoreCase("EditarMuestra")){
+            
+            String IdMuestra = request.getParameter("idmuestra");
+            String IdTipoMuestra = request.getParameter("slcMuestra");
+            String Presentacion = request.getParameter("TxtPresentacion");    
+            String Cantidad = request.getParameter("cantidad");
+            String UniMedida = request.getParameter("unidadmedida");            
+            //boolean estado = false;            
+            
+            Edit.setIdTipoMuestra(parseInt(IdTipoMuestra));
+            Edit.setPresentacion(Presentacion);
+            Edit.setCantidadUnidades(parseInt(Cantidad));
+            Edit.setIdUnidadMedida(parseInt(UniMedida));
+            Edit.setIdMuestra(parseInt(IdMuestra));
+            Edit.setFechaCreacion(sqlDate);
+            //sMue.setEliminado(estado);
+            ListMuestra.actualizar(Edit);
+            
+            request.getRequestDispatcher("MuestrasController?menu=analisis").forward(request, response);
+        }
+        //--BUSCAR SOLICITUD MEDICA--\\
+        else if(menu.equalsIgnoreCase("BuscarS")){
+            int IdMuestra;
+            IdMuestra = Integer.parseInt(request.getParameter("id"));
+            ListMuestra.BuscarSolicitud(IdMuestra);
+            
+            
+            SolicitudesMedicasDTO usuarioID = ListMuestra.BuscarSolicitud(IdMuestra);
+            request.setAttribute("solicitudS", usuarioID);
+            
+            request.getRequestDispatcher("MuestrasController?menu=CrearMuestra").forward(request, response);
         }
         
     }

@@ -25,12 +25,14 @@ public class TipoMuestraDTO {
     Date FechaCreacion;
     Date FechaModificacion;
     boolean Eliminado;
+    int idSolicitudes ;
 
     public TipoMuestraDTO() {
     }
 
     public TipoMuestraDTO(int IdTipoMuestra, String TipoMuestra, int IdUnidadMedida, 
-                            String UnidadMedida, int IdMuestra, String NumMuestra, String Presentacion, int CantidadUnidades, String Adjunto, Date FechaCreacion, Date FechaModificacion, boolean Eliminado) {
+                            String UnidadMedida, int IdMuestra, String NumMuestra, String Presentacion,
+                            int CantidadUnidades, String Adjunto, Date FechaCreacion, Date FechaModificacion, boolean Eliminado, int idSolicitudes) {
         this.IdTipoMuestra = IdTipoMuestra;
         this.TipoMuestra = TipoMuestra;
         this.IdUnidadMedida = IdUnidadMedida;
@@ -43,6 +45,7 @@ public class TipoMuestraDTO {
         this.FechaCreacion = FechaCreacion;
         this.FechaModificacion = FechaModificacion;
         this.Eliminado = Eliminado;
+        this.idSolicitudes = idSolicitudes;
     }
 
     public int getIdTipoMuestra() {
@@ -140,5 +143,14 @@ public class TipoMuestraDTO {
     public void setEliminado(boolean Eliminado) {
         this.Eliminado = Eliminado;
     }
+    
+    public int getIdSolicitudes() {
+        return idSolicitudes;
+    }
+
+    public void setIdSolicitudes(int idSolicitudes) {
+        this.idSolicitudes = idSolicitudes;
+    }
+    
     
 }

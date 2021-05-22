@@ -5,6 +5,7 @@
  */
 package API;
 
+import Models.SolicitudesMedicasDTO;
 import Models.TipoMuestraDTO;
 import java.sql.Connection;
 import java.sql.Date;
@@ -48,6 +49,7 @@ public class TipoMuestraAPI {
                 m.setFechaCreacion(rs.getDate(8));
                 m.setFechaModificacion(rs.getDate(9));
                 m.setEliminado(rs.getBoolean(10));
+                m.setIdSolicitudes(rs.getInt(11));
                 listM.add(m);
             }
         } catch (SQLException e) {
@@ -95,8 +97,8 @@ public class TipoMuestraAPI {
     
     public int CrearMuestra(TipoMuestraDTO pa) {
         String sql = "insert into muestra(IdTipoMuestra, Presentacion, "
-                + "CantidadUnidades, IdUnidadMedida, Adjunto, FechaCreacion,  Eliminado) "
-                + "values (?,?,?,?,?,?,?)";
+                + "CantidadUnidades, IdUnidadMedida, Adjunto, FechaCreacion,  Eliminado, idSolicitudes) "
+                + "values (?,?,?,?,?,?,?,?)";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -109,6 +111,7 @@ public class TipoMuestraAPI {
             ps.setString(5, pa.getAdjunto());
             ps.setDate(6, (Date) pa.getFechaCreacion());
             ps.setBoolean(7, eliminado);
+            ps.setInt(8, pa.getIdMuestra());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Código de Error: " + e.getErrorCode() + "\n"
@@ -213,9 +216,9 @@ public class TipoMuestraAPI {
         return mues;
     }
     
-        public List ListarSolicitudes() {
-        List<TipoMuestraDTO> listM = new ArrayList<>();
-        String sql = "SELECT * FROM solicitudes_medicas ";
+    public List ListarSolicitudes() {
+        List<SolicitudesMedicasDTO> listM = new ArrayList<>();
+        String sql = "SELECT * FROM solicitudes_medicas";
         
         try {
             con = cn.getConnection();
@@ -223,23 +226,85 @@ public class TipoMuestraAPI {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                TipoMuestraDTO m = new TipoMuestraDTO();
-                m.setIdMuestra(rs.getInt(1));
-                m.setNumMuestra(rs.getString(2));
-                m.setIdTipoMuestra(rs.getInt(3));
-                m.setPresentacion(rs.getString(4));
-                m.setCantidadUnidades(rs.getInt(5));
-                m.setIdUnidadMedida(rs.getInt(6));
-                m.setAdjunto(rs.getString(7));
-                m.setFechaCreacion(rs.getDate(8));
-                m.setFechaModificacion(rs.getDate(9));
-                m.setEliminado(rs.getBoolean(10));
-                listM.add(m);
+               SolicitudesMedicasDTO sol = new SolicitudesMedicasDTO();
+               
+               sol.setIdSolicitud(rs.getInt("idSolicitudes"));// A.codigoSolicitud, 
+               sol.setCodigoSolicitud(rs.getString("codigoSolicitud")); //A.NoExpediente,
+               sol.setNumExpediente(rs.getString("NoExpediente")); //A.NoExpediente,
+               //sol.setNit(rs.getString(3)); // A.nit, 
+               //sol.setNumSoporte(rs.getString(4)); //   A.numSoporte,
+               //sol.setNombreSoporte(rs.getString(5));   //  D.nombreSoporte, 
+               //sol.setNombreTipoSolicitante(rs.getString(6)); // E.nombreTipoSolicitante,
+               //sol.setNombreTipoSolicitud(rs.getString(7));      //B.nombreTipoSolicitud,
+               //sol.setUsuarioAsignacion(rs.getInt(8)); // A.UsuarioAsignacion,               
+               //sol.setNombreEstadoSolicitud(rs.getString(9)); //C.nombreEstadoSolicitud,               
+               //sol.setUsuarioCreacion(rs.getInt(10));// A.UsuarioCreacion,               
+               //sol.setFechaCreacion(rs.getString(11));                
+               //sol.setDescripcion(rs.getString(12));               
+               sol.setNombre(rs.getString("nombre"));               
+               //sol.setTelefono(rs.getString(14));
+               //sol.setEmail(rs.getString(15));
+                listM.add(sol);
             }
         } catch (SQLException e) {
         }
         return listM;
     }   
     
+    public int actualizar(TipoMuestraDTO pau) {
+        String sql = "UPDATE muestra SET IdTipoMuestra=?, Presentacion=?, CantidadUnidades=?, "
+                + "IdUnidadMedida=?, FechaModificacion=? "
+                + "WHERE IdMuestra=?";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+
+            ps.setInt(1, pau.getIdTipoMuestra());
+            ps.setString(2, pau.getPresentacion());
+            ps.setInt(3, pau.getCantidadUnidades());
+            ps.setInt(4, pau.getIdUnidadMedida());
+            ps.setDate(5, (Date) pau.getFechaCreacion());
+            ps.setInt(6, pau.getIdMuestra());
+            ps.executeUpdate();
+
+        } catch (SQLException e) {            
+        }
+        return r;
+    }
+    
+    public SolicitudesMedicasDTO BuscarSolicitud(int id) {
+        SolicitudesMedicasDTO idSol = new SolicitudesMedicasDTO();
+        String sql = "SELECT * FROM solicitudes_medicas WHERE idSolicitudes=" + id;
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery(); 
+            
+            while (rs.next()) {
+               idSol.setIdSolicitud(rs.getInt("idSolicitudes"));// A.codigoSolicitud, 
+               idSol.setCodigoSolicitud(rs.getString("codigoSolicitud")); //A.NoExpediente,
+               idSol.setNumExpediente(rs.getString("NoExpediente")); //A.NoExpediente,
+               //sol.setNit(rs.getString(3)); // A.nit, 
+               //sol.setNumSoporte(rs.getString(4)); //   A.numSoporte,
+               //sol.setNombreSoporte(rs.getString(5));   //  D.nombreSoporte, 
+               //sol.setNombreTipoSolicitante(rs.getString(6)); // E.nombreTipoSolicitante,
+               //sol.setNombreTipoSolicitud(rs.getString(7));      //B.nombreTipoSolicitud,
+               //sol.setUsuarioAsignacion(rs.getInt(8)); // A.UsuarioAsignacion,               
+               //sol.setNombreEstadoSolicitud(rs.getString(9)); //C.nombreEstadoSolicitud,               
+               //sol.setUsuarioCreacion(rs.getInt(10));// A.UsuarioCreacion,               
+               //sol.setFechaCreacion(rs.getString(11));                
+               //sol.setDescripcion(rs.getString(12));               
+               idSol.setNombre(rs.getString("nombre"));               
+               //sol.setTelefono(rs.getString(14));
+               //sol.setEmail(rs.getString(15));
+            }
+            
+        } catch (SQLException e) {
+            System.out.println("Código de Error: " + e.getErrorCode() + "\n"
+                    + "SLQState: " + e.getSQLState() + "\n"
+                    + "Mensaje: " + e.getMessage() + "\n");
+        }
+        return idSol;
+    }
     
 }
