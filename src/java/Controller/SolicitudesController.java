@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class SolicitudesController extends HttpServlet {
     
-     SolicitudesMedicasDTO findSolMedicById = new SolicitudesMedicasDTO();
+    SolicitudesMedicasDTO findSolMedicById = new SolicitudesMedicasDTO();
     SolicitudesMedicasAPI findSolMedicByIdAPI = new SolicitudesMedicasAPI();
     List<SolicitudesMedicasDTO> listS = new ArrayList<>(); 
     
@@ -46,8 +46,6 @@ public class SolicitudesController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        
          String menu = request.getParameter("menu");
         
         
@@ -159,7 +157,6 @@ public class SolicitudesController extends HttpServlet {
             else{
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
