@@ -71,7 +71,7 @@
                         </li>
                 
                         <li class="nav-item">
-                                <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="SolicitudesController?menu=mantenimiento">Mantenimiento de Solicictudes</a>
+                            <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="SolicitudesController?menu=mantenimiento">Mantenimiento de Solicictudes</a>
                         </li>
                     </ul>      
                 </div>

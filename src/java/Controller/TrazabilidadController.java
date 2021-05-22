@@ -30,8 +30,8 @@ public class TrazabilidadController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       
-         String menu = request.getParameter("menu");
+        
+        String menu = request.getParameter("menu");
         
         if (menu.equalsIgnoreCase("principal")){
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
