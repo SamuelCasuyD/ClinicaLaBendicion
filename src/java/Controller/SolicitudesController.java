@@ -59,23 +59,25 @@ public class SolicitudesController extends HttpServlet {
         if (menu.equalsIgnoreCase("principal")){
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
         }
-        
+        //--      
         else if (menu.equalsIgnoreCase("mantenimiento")){ 
             
             request.getRequestDispatcher("SolicitudMedica.jsp").forward(request, response);
             
         }
+        //--
         else if(menu.equalsIgnoreCase("crearSolicitud")){
             
             request.getRequestDispatcher("CrearSolicitud.jsp").forward(request, response);
             
         }
+        //--
         else if(menu.equalsIgnoreCase("consultaSolicitudes")){
             
-            request.getRequestDispatcher("ConsultaSolicitudes.jsp").forward(request, response);
-            
+            request.getRequestDispatcher("ConsultaSolicitudes.jsp").forward(request, response);            
         }
-        else if(menu.equalsIgnoreCase("Buscar")){       
+        //--
+        else if(menu.equalsIgnoreCase("Buscar")){
          
             String codigoSolicitud = request.getParameter("txtSolicitud");  
             String numExpediente = request.getParameter("txtExpediente");
@@ -101,12 +103,7 @@ public class SolicitudesController extends HttpServlet {
             if(fechaInicio.isEmpty())
                fechaInicio=null;
             if(fechaFin.isEmpty())
-               fechaFin=null;
-            
-            
-            
-            
-           
+               fechaFin=null;           
             if (codigoSolicitud==null &&numExpediente==null && 
                 numSoporte ==null && tipoSolicitud==null &&  nit==null && estado==null                    
                 && (fechaInicio==null || fechaFin ==null)) {
@@ -116,9 +113,7 @@ public class SolicitudesController extends HttpServlet {
                 
             }else{
                
-                listS = findSolMedicByIdAPI.buscarSolicitudesMedicas(codigoSolicitud, numExpediente, numSoporte, tipoSolicitud, nit, estado, fechaInicio, fechaFin);
-
-               
+                listS = findSolMedicByIdAPI.buscarSolicitudesMedicas(codigoSolicitud, numExpediente, numSoporte, tipoSolicitud, nit, estado, fechaInicio, fechaFin);              
                 
                 if  (listS.size()==0){
                     request.setAttribute("msj", "<div class='alert alert-warning alert-dismissible fade show' role='alert'>"
@@ -132,19 +127,13 @@ public class SolicitudesController extends HttpServlet {
                     request.getRequestDispatcher("ConsultaSolicitudes.jsp").forward(request, response);
                 }
             }
-                   
+        }
+        //--
+        else if(menu.equalsIgnoreCase("informacionGeneral")){
             
-            
-            
-            
-            
-            
-            
-        }else if(menu.equalsIgnoreCase("informacionGeneral")){            
-                
-                listS= findSolMedicByIdAPI.listarSolicitudes();
-                request.setAttribute("listSol",listS);
-                 request.getRequestDispatcher("SolicitudesController?menu=mantenimiento").forward(request, response);
+            listS= findSolMedicByIdAPI.listarSolicitudes();
+            request.setAttribute("listSol",listS);
+            request.getRequestDispatcher("SolicitudesController?menu=mantenimiento").forward(request, response);
         }
             else{
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
