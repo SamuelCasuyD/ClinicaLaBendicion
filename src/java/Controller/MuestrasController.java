@@ -67,8 +67,7 @@ public class MuestrasController extends HttpServlet {
             request.setAttribute("medida", Muestra);
             
             Muestra = ListMuestra.ListarSolicitudes();
-            request.setAttribute("solicitud", Muestra);    
-
+            request.setAttribute("solicitud", Muestra);
             
             request.getRequestDispatcher("CrearMuestra.jsp").forward(request, response);
         }
@@ -166,6 +165,12 @@ public class MuestrasController extends HttpServlet {
             
             request.getRequestDispatcher("MuestrasController?menu=CrearMuestra").forward(request, response);
         }
+        //--BUSCAR SOLICITUD MEDICA--\\
+        else if(menu.equalsIgnoreCase("AsignarItems")){
+            
+            request.getRequestDispatcher("MuestrasController?menu=analisis").forward(request, response);
+        }
+        
         
     }
 

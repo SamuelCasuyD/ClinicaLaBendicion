@@ -12,6 +12,7 @@
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <a href="MuestrasController?menu=CrearMuestra" class="btn btn-outline-info" role="button" aria-pressed="true">Crear Muestra</a>
                     <a href="MuestrasController?menu=MuestraEliminada" class="btn btn-outline-info" role="button" aria-pressed="true">Muestras Eliminadas</a>
+                    <a href="MuestrasController?menu=AsignarItems" class="btn btn-outline-info" role="button" aria-pressed="true">Asignar Items</a>
                 </div>                
                 <hr>
                 
