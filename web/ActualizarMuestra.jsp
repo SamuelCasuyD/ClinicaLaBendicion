@@ -5,28 +5,26 @@
 --%>
 
 <%@include file="Header.jsp" %>
-        <div class ="container mt-6 col-md-8 col-xl-6 p-0" style="padding-top: 20px">
-            <div class="form-group">
-                <h3 align="center" class="col-12">Crear Muestra</h3>
-            </div>
-            <div class="card col-lg-12">
-                <div class="card-body">
+    <div class ="container mt-6 col-md-8 col-xl-6 p-0" style="padding-top: 20px">
+        <div class="form-group">
+            <h3 align="center" class="col-12">Modificar Muestra</h3>
+        </div>
+        <div class="card col-lg-12">
+            <div class="card-body">
 
-                    <form class="col-12" action="Consultas" method="POST">
+                <form class="col-12" action="MuestrasController" method="POST">
 
-                        <div class="form-group">
-                            <div class="row">
-
-                                <label for="slcMuestra">Tipo muestra</label>
-                                <select id="slcMuestra" name="slcMuestra" class="form-control" >
-                                        <option>--Seleccionar--</option>
-                                        <c:forEach var="mu" items="${muestra}">
-                                            <option value="${datoMu.getIdTipoMuestra()}">${mu.getTipoMuestra()}</option>
-                                        </c:forEach>
-                                    </select>
-
-                            </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="slcMuestra">Tipo muestra</label>
+                            <select id="slcMuestra" name="slcMuestra" class="form-control" >
+                                <option>--Seleccionar--</option>
+                                <c:forEach var="mu" items="${muestra}">
+                                    <option value="${datoMu.getIdTipoMuestra()}">${mu.getTipoMuestra()}</option>
+                                </c:forEach>
+                            </select>
                         </div>
+                    </div>
                         
                         <div class="form-group">
                             <div class="row">
@@ -61,7 +59,7 @@
                         </div>
 
                         <div class="btn-group" role="group" aria-label="Basic example" style="text-align: center">
-                            <button type="submit" name="accion" value="EditarMuestra" class="btn btn-outline-secondary btn-md" >
+                            <button type="submit" name="menu" value="EditarMuestra" class="btn btn-outline-secondary btn-md" >
                                 <i class="fas fa-save fa-lg"> </i> Guardar
                             </button>        
                             

@@ -8,16 +8,27 @@
             <div class="card-body">
 
                 <form class="col-12" action="MuestrasController" method="POST">
+                    
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="idsolicitud" placeholder="Solicitud medica" aria-label="Recipient's username" aria-describedby="button-addon2" value="${solicitudS.getIdSolicitud()}">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2" data-toggle="modal" data-target="#exampleModal">
+                                <i class="fa fa-search"></i> Buscar
+                            </button>
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <div class="row">
-                            <label for="slcMuestra">Tipo muestra</label>
-                            <select id="slcMuestra" name="slcMuestra" class="form-control" >
-                                <option>--Seleccionar--</option>
-                                <c:forEach var="mu" items="${muestra}">
-                                    <option value="${mu.getIdTipoMuestra()}">${mu.getTipoMuestra()}</option>
-                                </c:forEach>
-                            </select>
+                            <div class="col-12 col-md-12">
+                                <label for="slcMuestra">Tipo muestra</label>
+                                <select id="slcMuestra" name="slcMuestra" class="form-control" >
+                                    <option>--Seleccionar--</option>
+                                    <c:forEach var="mu" items="${muestra}">
+                                        <option value="${mu.getIdTipoMuestra()}">${mu.getTipoMuestra()}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
                         </div>
                     </div>
                         
@@ -52,15 +63,6 @@
                             </div>
                         </div>
                         
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Solicitud medica" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="fa fa-search"></i> Buscar
-                                </button>
-                            </div>
-                        </div>
-                        
                         <div class="btn-group" role="group" aria-label="Basic example" style="text-align: center">
                             <button type="submit" name="menu" value="NewMuestras" class="btn btn-outline-secondary btn-md" >
                                 <i class="fas fa-save fa-lg"> </i> Guardar
@@ -92,37 +94,29 @@
                         <tr>
                             <th style="text-align: center">#</th>
                             <th>ID Solicitud</th>
+                            <th>Codigo</th>
                             <th>Expediente</th>
-                            <th>Presentación</th>
-                            <th>Cantidad</th>
-                            <th>Medida</th>
-                            <th>Adjunto</th>                            
+                            <th>Nombre</th>                           
                             <th style="text-align: center">Acción</th>
                         </tr>
                     </thead>
                     <tbody>
                         <%! int contador = 1;%>
-                        <c:forEach var="list" items="${eliminada}">
+                        <c:forEach var="sl" items="${solicitud}">
                             
                         <tr>
                             <td style="text-align: center"><%= contador%></td>
-                            <td>${list.getNumMuestra()}</td>
-                            <td>${list.getIdTipoMuestra()}</td>
-                            <td>${list.getPresentacion()}</td>
-                            <td>${list.getCantidadUnidades()}</td>
-                            <td>${list.getIdUnidadMedida()}</td>
-                            <td>${list.getAdjunto()}</td>
+                            <td>${sl.getIdSolicitud()}</td>
+                            <td>${sl.getCodigoSolicitud()}</td>
+                            <td>${sl.getNumExpediente()}</td>
+                            <td>${sl.getNombre()}</td>                            
                             <td style="text-align: center">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a href="MuestrasController?menu=RestaurarMuestra&id=${list.getIdMuestra()}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true" data-toggle="tooltip" title="Restaurar">
-                                        <i class="fas fa-undo-alt"></i>
-                                    </a>
-                                    <a href="Consultas?accion=EliminarMuestra&id=${list.getIdMuestra()}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true" data-toggle="tooltip" title="Editar">
-                                        <i class="far fa-edit"></i>
+                                    <a href="MuestrasController?menu=BuscarS&id=${sl.getIdSolicitud()}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true" data-toggle="tooltip" title="Restaurar">
+                                        <i class="fas fa-check-circle"></i>
                                     </a>
                                 </div>
-                            </td>
-                            
+                            </td>                            
                         </tr>
                         <% contador++; %>    
                         </c:forEach>
@@ -137,6 +131,4 @@
         </div>
     </div>
 </div>
-
-
 <%@include file="footer.jsp" %>

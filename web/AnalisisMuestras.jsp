@@ -26,6 +26,7 @@
                             <th>Medida</th>
                             <th>Adjunto</th>
                             <th>Fecha Creación</th>
+                            <th>Solicitud Medica</th>
                             <th style="text-align: center">Acción</th>
                         </tr>
                     </thead>
@@ -42,6 +43,7 @@
                             <td style="text-align: center">${list.getIdUnidadMedida()}</td>
                             <td>${list.getAdjunto()}</td>
                             <td>${list.getFechaCreacion()}</td>
+                            <td>${list.getIdSolicitudes()}</td>
                             <td style="text-align: center">
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <a href="Consultas?accion=EliminarMuestra&id=${list.getIdMuestra()}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true" data-toggle="tooltip" title="Eliminar">
