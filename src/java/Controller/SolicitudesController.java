@@ -136,9 +136,7 @@ String menu = request.getParameter("menu");
                     request.getRequestDispatcher("ConsultaSolicitudes.jsp").forward(request, response);
                 }
             }
-            
-            
-            
+                   
             
             
             
