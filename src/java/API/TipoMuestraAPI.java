@@ -213,4 +213,33 @@ public class TipoMuestraAPI {
         return mues;
     }
     
+        public List ListarSolicitudes() {
+        List<TipoMuestraDTO> listM = new ArrayList<>();
+        String sql = "SELECT * FROM solicitudes_medicas ";
+        
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                TipoMuestraDTO m = new TipoMuestraDTO();
+                m.setIdMuestra(rs.getInt(1));
+                m.setNumMuestra(rs.getString(2));
+                m.setIdTipoMuestra(rs.getInt(3));
+                m.setPresentacion(rs.getString(4));
+                m.setCantidadUnidades(rs.getInt(5));
+                m.setIdUnidadMedida(rs.getInt(6));
+                m.setAdjunto(rs.getString(7));
+                m.setFechaCreacion(rs.getDate(8));
+                m.setFechaModificacion(rs.getDate(9));
+                m.setEliminado(rs.getBoolean(10));
+                listM.add(m);
+            }
+        } catch (SQLException e) {
+        }
+        return listM;
+    }   
+    
+    
 }

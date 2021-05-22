@@ -4,31 +4,31 @@
         <div class="form-group">
             <h3 align="center" class="col-12">Crear Muestra</h3>
         </div>
-            <div class="card col-lg-12">
-                <div class="card-body">
+        <div class="card col-lg-12">
+            <div class="card-body">
 
-                    <form class="col-12" action="MuestrasController" method="POST">
+                <form class="col-12" action="MuestrasController" method="POST">
 
-                        <div class="form-group">
-                            <div class="row">
-                                <label for="slcMuestra">Tipo muestra</label>
-                                <select id="slcMuestra" name="slcMuestra" class="form-control" >
-                                        <option>--Seleccionar--</option>
-                                        <c:forEach var="mu" items="${muestra}">
-                                            <option value="${mu.getIdTipoMuestra()}">${mu.getTipoMuestra()}</option>
-                                        </c:forEach>
-                                </select>
-                            </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="slcMuestra">Tipo muestra</label>
+                            <select id="slcMuestra" name="slcMuestra" class="form-control" >
+                                <option>--Seleccionar--</option>
+                                <c:forEach var="mu" items="${muestra}">
+                                    <option value="${mu.getIdTipoMuestra()}">${mu.getTipoMuestra()}</option>
+                                </c:forEach>
+                            </select>
                         </div>
+                    </div>
                         
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label >Presentación</label>
-                                    <textarea name="TxtPresentacion" class="form-control" placeholder="Ingrese informacion"  required="" rows="3"></textarea>
-                                </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label >Presentación</label>
+                                <textarea name="TxtPresentacion" class="form-control" placeholder="Ingrese informacion"  required="" rows="3"></textarea>
                             </div>
                         </div>
+                    </div>
                         
                         <div class="form-group">
                             <div class="row">
@@ -65,7 +65,7 @@
                             <button type="submit" name="menu" value="NewMuestras" class="btn btn-outline-secondary btn-md" >
                                 <i class="fas fa-save fa-lg"> </i> Guardar
                             </button>                           
-                            <a class="btn btn-outline-secondary btn-md" href="Controlador?menu=CrearUsuario&accion=Cancelar" target='myIframe'>
+                            <a class="btn btn-outline-secondary btn-md" href="MuestrasController?menu=analisis">
                                 <i class="fas fa-window-close fa-lg"> </i> 
                                 Cancelar
                             </a>
@@ -78,7 +78,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Lista de Solicitudes</h5>
@@ -87,18 +87,16 @@
                 </button>
             </div>
             <div class="modal-body">
-                <table id="example" class="table table-bordered table-striped small">
+                <table id="example" class="table table-bordered table-striped table-responsive small" style="width: 100%">
                     <thead>
                         <tr>
                             <th style="text-align: center">#</th>
-                            <th>ID Muestra</th>
-                            <th>Tipo de Muestra</th>
+                            <th>ID Solicitud</th>
+                            <th>Expediente</th>
                             <th>Presentación</th>
                             <th>Cantidad</th>
                             <th>Medida</th>
-                            <th>Adjunto</th>
-                            <th>Fecha Creación</th>
-                            <th>Fecha Modificacion</th>
+                            <th>Adjunto</th>                            
                             <th style="text-align: center">Acción</th>
                         </tr>
                     </thead>
@@ -114,8 +112,6 @@
                             <td>${list.getCantidadUnidades()}</td>
                             <td>${list.getIdUnidadMedida()}</td>
                             <td>${list.getAdjunto()}</td>
-                            <td>${list.getFechaCreacion()}</td>
-                            <td>${list.getFechaModificacion()}</td>
                             <td style="text-align: center">
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <a href="MuestrasController?menu=RestaurarMuestra&id=${list.getIdMuestra()}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true" data-toggle="tooltip" title="Restaurar">
