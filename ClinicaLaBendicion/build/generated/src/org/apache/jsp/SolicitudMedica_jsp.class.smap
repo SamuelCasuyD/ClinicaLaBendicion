@@ -1,0 +1,20 @@
+SMAP
+SolicitudMedica_jsp.java
+JSP
+*S JSP
+*F
++ 0 SolicitudMedica.jsp
+SolicitudMedica.jsp
++ 1 footer.jsp
+footer.jsp
+*L
+5,57:49
+62,2:106,3
+64:112
+65,11:113,3
+76,3:146
+79,4:149,3
+83,10:161
+1#1,36:170
+92#0:205
+*E
