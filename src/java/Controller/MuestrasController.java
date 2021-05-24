@@ -8,15 +8,24 @@ package Controller;
 import API.TipoMuestraAPI;
 import Models.SolicitudesMedicasDTO;
 import Models.TipoMuestraDTO;
+
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -24,7 +33,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "MuestrasController", urlPatterns = {"/MuestrasController"})
 public class MuestrasController extends HttpServlet {
-    
+    private static final long serialVersionUID = 1L;
     TipoMuestraAPI ListMuestra = new TipoMuestraAPI();
     List<TipoMuestraDTO> Muestra = new ArrayList<>();
     TipoMuestraDTO Create = new TipoMuestraDTO();
@@ -74,6 +83,7 @@ public class MuestrasController extends HttpServlet {
         //--CREAR MUESTAS MEDICAS--\\
         else if(menu.equalsIgnoreCase("NewMuestras")){
             
+            
             String IdTipoMuestra = request.getParameter("slcMuestra");
             String Presentacion = request.getParameter("TxtPresentacion");    
             String Cantidad = request.getParameter("cantidad");
@@ -81,6 +91,30 @@ public class MuestrasController extends HttpServlet {
             String idsolicitud = request.getParameter("idsolicitud");
             
             boolean estado = false;
+            
+            final String UPLOAD_DIRECTORY = "C:/uploads";
+        if(ServletFileUpload.isMultipartContent(request)){
+            /*try {
+                List multiparts = new ServletFileUpload(
+                new DiskFileItemFactory()).parseRequest(request);
+                for(FileItem item : multiparts){
+                    if(!item.isFormField()){
+                        File fileSaveDir = new File(UPLOAD_DIRECTORY);
+                        if (!fileSaveDir.exists()) {
+                            fileSaveDir.mkdir();
+                        }
+                        String name = new File(item.getName()).getName();
+                        item.write( new File(UPLOAD_DIRECTORY + File.separator + name));
+                    }
+                }
+            } catch (Exception e) {
+                // exception handling
+            }*/
+             
+            PrintWriter out = response.getWriter();
+            out.print("{\"status\":1}");
+        }
+         
             
             Create.setIdTipoMuestra(parseInt(IdTipoMuestra));
             Create.setPresentacion(Presentacion);

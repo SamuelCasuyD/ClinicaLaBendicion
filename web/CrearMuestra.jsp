@@ -41,14 +41,14 @@
                         </div>
                     </div>
                         
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-12 col-md-12">
-                                    <label for="">Cantidad unidades</label>
-                                    <input type="text" name="cantidad" class="form-control" placeholder="0001" autocomplete="off" maxlength="4">
-                                </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <label for="">Cantidad unidades</label>
+                                <input type="text" name="cantidad" class="form-control" placeholder="0001" autocomplete="off" maxlength="4">
                             </div>
                         </div>
+                    </div>
                         
                         <div class="form-group">
                             <div class="row">
@@ -61,7 +61,24 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div>                       
+                        
+                        
+                        
+                            <div class="input-group mb-3 input-file" >
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary btn-choose" type="button" data-toggle="tooltip" title="Adjuntar Archivo">                                        
+                                         <i class="fas fa-file-upload"> </i>
+                                    </button>
+                                </span> 
+                                <input type="text" class="form-control" name="file" placeholder='Seleccionar archivo...' /> 
+                                <span class="input-group-btn">
+                                    <button class="btn btn-warning btn-reset" type="button">Reset</button>
+                                </span>
+                            </div>
+                             
+                        
+                        
                         
                         <div class="btn-group" role="group" aria-label="Basic example" style="text-align: center">
                             <button type="submit" name="menu" value="NewMuestras" class="btn btn-outline-secondary btn-md" >
@@ -74,7 +91,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
+        </div>
     </div>    
 </div>
 
