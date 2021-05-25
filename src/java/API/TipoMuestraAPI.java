@@ -5,6 +5,7 @@
  */
 package API;
 
+import Models.ItemsDTO;
 import Models.SolicitudesMedicasDTO;
 import Models.TipoMuestraDTO;
 import java.sql.Connection;
@@ -93,6 +94,31 @@ public class TipoMuestraAPI {
         } catch (SQLException e) {
         }
         return listM;
+    }
+    
+    public List ListarItems() {
+        List<ItemsDTO> item = new ArrayList<>();
+        String sql = "SELECT * FROM items WHERE Eliminado = 0 ";
+        
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                ItemsDTO m = new ItemsDTO();
+                
+                m.setIdItems(rs.getInt(1));
+                m.setNombreItems(rs.getString(2));
+                m.setFechaCreacion(rs.getDate(3));
+                m.setFechaModificacion(rs.getDate(4));
+                m.setEliminado(rs.getBoolean(5));
+
+                item.add(m);
+            }
+        } catch (SQLException e) {
+        }
+        return item;
     }
     
     public int CrearMuestra(TipoMuestraDTO pa) {

@@ -27,7 +27,7 @@
                             <th>Medida</th>
                             <th>Adjunto</th>
                             <th>Fecha Creación</th>
-                            <th>Solicitud Medica</th>
+                            <th>Items Asociados</th>
                             <th style="text-align: center">Acción</th>
                         </tr>
                     </thead>
