@@ -7,7 +7,7 @@
         <div class="card col-lg-12">
             <div class="card-body">
 
-                <form class="col-12" action="MuestrasController" method="POST">
+                <form class="col-12" action="MuestrasController" method="POST" enctype="multipart/form-data">
                     
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" name="idsolicitud" placeholder="Solicitud medica" aria-label="Recipient's username" aria-describedby="button-addon2" value="${solicitudS.getIdSolicitud()}">
@@ -50,47 +50,43 @@
                         </div>
                     </div>
                         
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-12 col-md-12">
-                                    <label for="">Unidad de Medida</label>
-                                    <select name="unidadmedida" class="form-control" required="" >
-                                        <c:forEach var="me" items="${medida}">
-                                            <option value="${me.getIdUnidadMedida()}">${me.getUnidadMedida()}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <label >Unidad de Medida</label>
+                                <select name="unidadmedida" class="form-control" required="" >
+                                    <c:forEach var="me" items="${medida}">
+                                        <option value="${me.getIdUnidadMedida()}">${me.getUnidadMedida()}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
-                        </div>                       
-                        
-                        
-                        
-                            <div class="input-group mb-3 input-file" >
-                                <span class="input-group-btn">
-                                    <button class="btn btn-primary btn-choose" type="button" data-toggle="tooltip" title="Adjuntar Archivo">                                        
-                                         <i class="fas fa-file-upload"> </i>
-                                    </button>
-                                </span> 
-                                <input type="text" class="form-control" name="file" placeholder='Seleccionar archivo...' /> 
-                                <span class="input-group-btn">
-                                    <button class="btn btn-warning btn-reset" type="button">Reset</button>
-                                </span>
-                            </div>
-                             
-                        
-                        
-                        
-                        <div class="btn-group" role="group" aria-label="Basic example" style="text-align: center">
-                            <button type="submit" name="menu" value="NewMuestras" class="btn btn-outline-secondary btn-md" >
-                                <i class="fas fa-save fa-lg"> </i> Guardar
-                            </button>                           
-                            <a class="btn btn-outline-secondary btn-md" href="MuestrasController?menu=analisis">
-                                <i class="fas fa-window-close fa-lg"> </i> 
-                                Cancelar
-                            </a>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                        
+                    <div class="input-group mb-3 input-file" >
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary btn-choose" type="button" data-toggle="tooltip" title="Adjuntar Archivo">                                        
+                                <i class="fas fa-file-upload"> </i>
+                            </button>
+                        </span> 
+                        <input type="file" class="form-control" name="file" placeholder='Seleccionar archivo...' /> 
+                        <span class="input-group-btn">
+                            <button class="btn btn-warning btn-reset" type="button">Reset</button>
+                        </span>
+                    </div>                      
+                        
+                        
+                        
+                    <div class="btn-group" role="group" aria-label="Basic example" style="text-align: center">
+                        <button type="submit" name="menu" value="NewMuestras" class="btn btn-outline-secondary btn-md" >
+                            <i class="fas fa-save fa-lg"> </i> Guardar
+                        </button>                           
+                        <a class="btn btn-outline-secondary btn-md" href="MuestrasController?menu=analisis">
+                            <i class="fas fa-window-close fa-lg"> </i> Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>    
 </div>

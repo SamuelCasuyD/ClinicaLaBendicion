@@ -6,34 +6,44 @@
 package Controller;
 
 import API.TipoMuestraAPI;
+import API.UploadFileAPI;
 import Models.SolicitudesMedicasDTO;
 import Models.TipoMuestraDTO;
+import Models.UploadFileDTO;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.InputStream;
 
 import static java.lang.Integer.parseInt;
+import java.nio.file.Paths;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author SammyKazzu
  */
+@MultipartConfig
 @WebServlet(name = "MuestrasController", urlPatterns = {"/MuestrasController"})
 public class MuestrasController extends HttpServlet {
+    
     private static final long serialVersionUID = 1L;
+    private UploadFileAPI upFiles = new UploadFileAPI();
+    private String pathFiles = "C:\\Users\\SammyKazzu\\Documents\\GitHub\\ClinicaLaBendicion\\web\\Files\\"; 
+    private File uploads = new File(pathFiles);
+    private String[] extens ={".pdf",".jpg",".png",".docx",".xlsx"};
+    
     TipoMuestraAPI ListMuestra = new TipoMuestraAPI();
     List<TipoMuestraDTO> Muestra = new ArrayList<>();
     TipoMuestraDTO Create = new TipoMuestraDTO();
@@ -50,8 +60,8 @@ public class MuestrasController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-             throws ServletException, IOException {
+    
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
         String menu = request.getParameter("menu");
@@ -91,31 +101,7 @@ public class MuestrasController extends HttpServlet {
             String idsolicitud = request.getParameter("idsolicitud");
             
             boolean estado = false;
-            
-            final String UPLOAD_DIRECTORY = "C:/uploads";
-        if(ServletFileUpload.isMultipartContent(request)){
-            /*try {
-                List multiparts = new ServletFileUpload(
-                new DiskFileItemFactory()).parseRequest(request);
-                for(FileItem item : multiparts){
-                    if(!item.isFormField()){
-                        File fileSaveDir = new File(UPLOAD_DIRECTORY);
-                        if (!fileSaveDir.exists()) {
-                            fileSaveDir.mkdir();
-                        }
-                        String name = new File(item.getName()).getName();
-                        item.write( new File(UPLOAD_DIRECTORY + File.separator + name));
-                    }
-                }
-            } catch (Exception e) {
-                // exception handling
-            }*/
-             
-            PrintWriter out = response.getWriter();
-            out.print("{\"status\":1}");
-        }
-         
-            
+                        
             Create.setIdTipoMuestra(parseInt(IdTipoMuestra));
             Create.setPresentacion(Presentacion);
             Create.setCantidadUnidades(parseInt(Cantidad));
@@ -124,6 +110,8 @@ public class MuestrasController extends HttpServlet {
             Create.setEliminado(estado);
             Create.setIdMuestra(parseInt(idsolicitud));
             ListMuestra.CrearMuestra(Create);
+            
+            saveCustomer(request, response);
             
             request.getRequestDispatcher("MuestrasController?menu=analisis").forward(request, response);
         }
@@ -203,10 +191,69 @@ public class MuestrasController extends HttpServlet {
         else if(menu.equalsIgnoreCase("AsignarItems")){
             
             request.getRequestDispatcher("MuestrasController?menu=AsignacionDeItems").forward(request, response);
-        }
-        
+        }        
         
     }
+    
+    
+    private void saveCustomer(HttpServletRequest req, HttpServletResponse resp){
+        
+        try{
+            String name = req.getParameter("name");
+            String file = req.getParameter("file");          
+            
+            int idadjunt = 0;
+            String num = "";
+            String num1 ="";
+            boolean tres = false;
+            
+            Part part = req.getPart("file");
+            
+            if(part == null){
+                System.out.println("Aun no tiene archivos seleccionados");
+                return;
+            }
+            
+            if(isExtension(part.getSubmittedFileName(), extens)){
+                String Photo = saveFile(part,uploads);
+                UploadFileDTO docs = new UploadFileDTO(idadjunt, num, file, sqlDate, sqlDate, tres);
+                upFiles.addUploadFile(docs);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    
+    }
+    
+    private String saveFile(Part part, File pathUploads){
+        
+        String pathAbsolute = "";
+        
+        try{            
+            Path path = Paths.get(part.getSubmittedFileName());
+            String fileName = path.getFileName().toString();
+            InputStream input = part.getInputStream();   
+            
+            if(input != null){
+                File file = new File(pathUploads, fileName);
+                pathAbsolute = file.getAbsolutePath();
+                Files.copy(input, file.toPath());
+            }
+        }catch (Exception e){            
+            e.printStackTrace();        
+        }
+        return pathAbsolute;
+    }
+    
+    private boolean isExtension(String fileName, String[] extensions){
+        for(String et : extensions){
+            if(fileName.toLowerCase().endsWith(et)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
