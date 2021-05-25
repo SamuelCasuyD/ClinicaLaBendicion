@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3308
--- Tiempo de generación: 22-05-2021 a las 02:45:53
+-- Tiempo de generación: 25-05-2021 a las 14:25:31
 -- Versión del servidor: 8.0.18
 -- Versión de PHP: 7.3.12
 
@@ -108,6 +108,35 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `items`
+--
+
+DROP TABLE IF EXISTS `items`;
+CREATE TABLE IF NOT EXISTS `items` (
+  `IdItems` int(11) NOT NULL AUTO_INCREMENT,
+  `NombreItems` varchar(250) DEFAULT NULL,
+  `FechaCreacion` datetime DEFAULT NULL,
+  `FechaModificacion` datetime DEFAULT NULL,
+  `Eliminado` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`IdItems`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `items`
+--
+
+INSERT INTO `items` (`IdItems`, `NombreItems`, `FechaCreacion`, `FechaModificacion`, `Eliminado`) VALUES
+(1, 'Macrobiotico', '2021-05-25 00:00:00', NULL, 0),
+(2, 'Trigliceridos', '2021-05-25 00:00:00', NULL, 0),
+(3, 'Diabetes', '2021-05-25 05:20:20', NULL, 0),
+(4, 'Embarazo', '2021-05-25 03:19:19', NULL, 0),
+(5, 'Test de drogas', '2021-05-25 14:31:19', NULL, 0),
+(6, 'Test de enfermedades renales', '2021-05-25 04:13:13', NULL, 0),
+(7, 'Bacterianas', '2021-05-25 04:11:11', NULL, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `muestra`
 --
 
@@ -119,35 +148,42 @@ CREATE TABLE IF NOT EXISTS `muestra` (
   `Presentacion` varchar(2000) DEFAULT NULL,
   `CantidadUnidades` int(4) DEFAULT NULL,
   `IdUnidadMedida` int(8) DEFAULT NULL,
-  `Adjunto` varchar(250) DEFAULT NULL,
+  `IdAdjunto` int(11) DEFAULT NULL,
   `FechaCreacion` datetime DEFAULT NULL,
   `FechaModificacion` datetime DEFAULT NULL,
   `Eliminado` tinyint(1) DEFAULT NULL,
-  `idSolicitudes` int(11) DEFAULT NULL,
-  PRIMARY KEY (`IdMuestra`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `IdItems` int(11) DEFAULT NULL,
+  PRIMARY KEY (`IdMuestra`),
+  KEY `IdUnidadMedida` (`IdUnidadMedida`),
+  KEY `IdTipoMuestra` (`IdTipoMuestra`),
+  KEY `Adjunto` (`IdAdjunto`),
+  KEY `IdItems` (`IdItems`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `muestra`
 --
 
-INSERT INTO `muestra` (`IdMuestra`, `NumMuestra`, `IdTipoMuestra`, `Presentacion`, `CantidadUnidades`, `IdUnidadMedida`, `Adjunto`, `FechaCreacion`, `FechaModificacion`, `Eliminado`, `idSolicitudes`) VALUES
-(1, 'AAAAA-AA-01-000001', 1, 'Somos bananos 3333333', 1, 1, 'trrr', '2021-05-08 00:00:00', '2021-05-15 00:00:00', 0, NULL),
-(2, 'AAAAAA2-02-000002', 2, 'msta', 2, 2, 'ttrterert', '2021-05-08 00:00:00', NULL, 0, NULL),
-(3, 'AAAAA-A3-03-000003', 1, 'temerarios', 3, 1, 'trest', '2021-05-08 00:00:00', '2021-05-20 00:00:00', 0, NULL),
-(4, 'ABCD4-A4-04-000004', 3, 'Muestras de orina ', 4, 1, '/test/res', '2021-05-08 00:00:00', '2021-05-20 00:00:00', 0, NULL),
+INSERT INTO `muestra` (`IdMuestra`, `NumMuestra`, `IdTipoMuestra`, `Presentacion`, `CantidadUnidades`, `IdUnidadMedida`, `IdAdjunto`, `FechaCreacion`, `FechaModificacion`, `Eliminado`, `IdItems`) VALUES
+(1, 'AAAAA-AA-01-000001', 1, 'Amores verdaderos ', 1, 1, 0, '2021-05-08 00:00:00', '2021-05-21 00:00:00', 0, NULL),
+(2, 'AAAAAA2-02-000002', 2, 'msta', 2, 2, 0, '2021-05-08 00:00:00', NULL, 0, NULL),
+(3, 'AAAAA-A3-03-000003', 1, 'temerarios', 3, 1, 0, '2021-05-08 00:00:00', '2021-05-20 00:00:00', 0, NULL),
+(4, 'ABCD4-A4-04-000004', 3, 'Muestras de orina ', 4, 1, 0, '2021-05-08 00:00:00', '2021-05-21 00:00:00', 0, NULL),
 (5, 'ABCD5-A5-05-000005', 4, 'tetser', 2255, 3, NULL, '2021-05-02 00:00:00', '2021-05-20 00:00:00', 0, NULL),
 (6, 'ABCD6-A6-06-000006', 2, 'Amores', 8989, 2, NULL, '2021-05-01 00:00:00', '2021-05-20 00:00:00', 0, NULL),
 (7, 'ABCD7-A7-07-000007', 1, 'Muestra de Sangre', 12, 1, NULL, '2021-05-01 00:00:00', '2021-05-20 00:00:00', 0, NULL),
 (8, 'ABCD8-A8-08-000008', 2, 'De la abuela coco', 2, 2, NULL, '2021-05-01 00:00:00', '2021-05-20 00:00:00', 0, NULL),
 (9, 'ABCD9-A9-09-000009', 2, 'fdfdf', 7878, 1, NULL, '2021-05-15 00:00:00', '2021-05-20 00:00:00', 0, NULL),
-(10, 'ABC10-10-10-000010', 1, 'ttetet   eerere ererere', 100, 1, NULL, '2021-05-15 00:00:00', '2021-05-20 00:00:00', 0, NULL),
+(10, 'ABC10-10-10-000010', 1, 'ttetet   eerere ererere', 100, 1, NULL, '2021-05-15 00:00:00', '2021-05-21 00:00:00', 1, NULL),
 (11, 'ABC11-11-11-000011', 4, 'Color amarillento', 2133, 1, NULL, '2021-05-15 00:00:00', '2021-05-20 00:00:00', 0, NULL),
 (12, 'ABC12-12-12-000012', 1, 'Ormonas', 8555, 2, NULL, '2021-05-15 00:00:00', '2021-05-20 00:00:00', 0, NULL),
 (13, 'ABC13-13-13-000013', 3, 'Color negro', 78, 2, NULL, '2021-05-15 00:00:00', '2021-05-20 00:00:00', 0, NULL),
 (14, 'ABC14-14-14-000014', 2, 'tres Tres', 12, 2, NULL, '2021-05-15 00:00:00', '2021-05-20 00:00:00', 0, NULL),
 (15, 'ABC15-15-15-000015', 1, 'Muestras de Sangre', 8565, 2, NULL, '2021-05-15 00:00:00', '2021-05-20 00:00:00', 0, NULL),
-(16, 'ABC16-16-16-000016', 4, 'Test liquido', 1, 1, NULL, '2021-05-19 00:00:00', '2021-05-20 00:00:00', 0, NULL);
+(16, 'ABC16-16-16-000016', 4, 'Test liquido', 1, 1, NULL, '2021-05-19 00:00:00', '2021-05-20 00:00:00', 0, NULL),
+(17, 'ABC17-17-17-000017', 1, 'sfsdfsdf', 22, 1, NULL, '2021-05-21 00:00:00', NULL, 0, NULL),
+(18, 'ABC18-18-18-000018', 2, 'Testsets', 121, 1, NULL, '2021-05-21 00:00:00', NULL, 0, 6),
+(19, 'ABC19-19-19-000019', 2, 'tres', 12, 1, NULL, '2021-05-22 00:00:00', NULL, 0, 4);
 
 --
 -- Disparadores `muestra`
@@ -377,6 +413,36 @@ INSERT INTO `tipo_soporte` (`idSoporte`, `tipoSoporte`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `trazabilidad`
+--
+
+DROP TABLE IF EXISTS `trazabilidad`;
+CREATE TABLE IF NOT EXISTS `trazabilidad` (
+  `idTrazabilidad` int(11) NOT NULL AUTO_INCREMENT,
+  `codigoSolicitud` varchar(50) NOT NULL,
+  `estadoSolicitud` int(11) NOT NULL,
+  `enviadoPor` varchar(75) NOT NULL,
+  `asignadoA` varchar(75) NOT NULL,
+  `fechaHoraEstado` datetime NOT NULL,
+  `duracion` varchar(255) NOT NULL,
+  `acumulado` varchar(255) NOT NULL,
+  `observaciones` varchar(255) NOT NULL,
+  `asignacion` varchar(255) NOT NULL,
+  PRIMARY KEY (`idTrazabilidad`),
+  KEY `estadoSolicitud` (`estadoSolicitud`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `trazabilidad`
+--
+
+INSERT INTO `trazabilidad` (`idTrazabilidad`, `codigoSolicitud`, `estadoSolicitud`, `enviadoPor`, `asignadoA`, `fechaHoraEstado`, `duracion`, `acumulado`, `observaciones`, `asignacion`) VALUES
+(1, 'EX-20210515-00006', 2, 'alexamder', 'Elias', '2021-05-21 07:25:12', '5 dias', '10 dias', 'no trajó documentos', ''),
+(2, 'EX-20210515-00006', 3, 'elias', 'alex', '2021-05-21 02:03:09', '1 dia', '2 dias', 'No trajo documento', '');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `unida_medida`
 --
 
@@ -399,6 +465,25 @@ INSERT INTO `unida_medida` (`IdUnidadMedida`, `UnidadMedida`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `upload_files`
+--
+
+DROP TABLE IF EXISTS `upload_files`;
+CREATE TABLE IF NOT EXISTS `upload_files` (
+  `EntityID` int(11) NOT NULL AUTO_INCREMENT,
+  `IdAdjunto` int(11) NOT NULL,
+  `NumMuestra` varchar(250) NOT NULL,
+  `PathName` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `FechaCreacion` datetime NOT NULL,
+  `FechaModificacion` datetime DEFAULT NULL,
+  `Eliminado` tinyint(1) NOT NULL,
+  PRIMARY KEY (`EntityID`),
+  KEY `IdAdjunto` (`IdAdjunto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -410,6 +495,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `OtroNombre` varchar(25) DEFAULT NULL,
   `PrimerApellido` varchar(30) NOT NULL,
   `SegundoApellido` varchar(30) DEFAULT NULL,
+  `IdRoll` int(11) NOT NULL,
   `Usuario` varchar(12) NOT NULL,
   `PasswordUser` varchar(18) NOT NULL,
   `FechaNacimiento` varchar(15) NOT NULL,
@@ -420,35 +506,38 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `FechaCreacion` varchar(25) NOT NULL,
   `FechaModificacion` varchar(15) DEFAULT NULL,
   `Estado` int(11) NOT NULL,
-  PRIMARY KEY (`EntityID`)
+  PRIMARY KEY (`EntityID`),
+  KEY `IdRoll` (`IdRoll`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`EntityID`, `PrimerNombre`, `SegundoNombre`, `OtroNombre`, `PrimerApellido`, `SegundoApellido`, `Usuario`, `PasswordUser`, `FechaNacimiento`, `Genero`, `Telefono`, `Movil`, `Correo`, `FechaCreacion`, `FechaModificacion`, `Estado`) VALUES
-(2, 'Douglas', 'Alexander', NULL, 'Sacalxot', 'Elias', 'Elias3224', '@elias3224', '01-05-1996', 1, '24365878', '53856987', 'd.alexelias@gmail.com', '31-03-2021 17:06:42', NULL, 1);
+INSERT INTO `usuarios` (`EntityID`, `PrimerNombre`, `SegundoNombre`, `OtroNombre`, `PrimerApellido`, `SegundoApellido`, `IdRoll`, `Usuario`, `PasswordUser`, `FechaNacimiento`, `Genero`, `Telefono`, `Movil`, `Correo`, `FechaCreacion`, `FechaModificacion`, `Estado`) VALUES
+(2, 'Douglas', 'Alexander', NULL, 'Sacalxot', 'Elias', 2, 'Elias3224', '@elias3224', '01-05-1996', 1, '24365878', '53856987', 'd.alexelias@gmail.com', '31-03-2021 17:06:42', NULL, 1);
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `solicitudes_medicas`
+-- Filtros para la tabla `muestra`
 --
-ALTER TABLE `solicitudes_medicas`
-  ADD CONSTRAINT `solicitudes_medicas_ibfk_2` FOREIGN KEY (`tipoSolicitud`) REFERENCES `tipos_solicitudes` (`idTipoSolicitud`),
-  ADD CONSTRAINT `solicitudes_medicas_ibfk_3` FOREIGN KEY (`estado_solicitud`) REFERENCES `estados_solicitudes` (`idEstadoSolicitud`),
-  ADD CONSTRAINT `solicitudes_medicas_ibfk_4` FOREIGN KEY (`NoExpediente`) REFERENCES `expedientes` (`NoExpediente`),
-  ADD CONSTRAINT `solicitudes_medicas_ibfk_5` FOREIGN KEY (`tipoSoporte`) REFERENCES `soporte` (`idSoporte`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `solicitudes_medicas_ibfk_6` FOREIGN KEY (`tipoSolicitante`) REFERENCES `tipos_solicitantes` (`idTipoSolicitante`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `muestra`
+  ADD CONSTRAINT `muestra_ibfk_1` FOREIGN KEY (`IdUnidadMedida`) REFERENCES `unida_medida` (`IdUnidadMedida`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `soporte`
+-- Filtros para la tabla `trazabilidad`
 --
-ALTER TABLE `soporte`
-  ADD CONSTRAINT `soporte_ibfk_1` FOREIGN KEY (`idTipoSoporte`) REFERENCES `tipo_soporte` (`idSoporte`);
+ALTER TABLE `trazabilidad`
+  ADD CONSTRAINT `trazabilidad_ibfk_1` FOREIGN KEY (`estadoSolicitud`) REFERENCES `estados_solicitudes` (`idEstadoSolicitud`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`IdRoll`) REFERENCES `rollusuario` (`IdRoll`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
