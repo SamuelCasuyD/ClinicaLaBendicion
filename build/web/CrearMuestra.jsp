@@ -44,7 +44,7 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-12 col-md-12">
-                                <label for="">Cantidad unidades</label>
+                                <label >Cantidad unidades</label>
                                 <input type="text" name="cantidad" class="form-control" placeholder="0001" autocomplete="off" maxlength="4">
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                 <i class="fas fa-file-upload"> </i>
                             </button>
                         </span> 
-                        <input type="file" class="form-control" name="file" placeholder='Seleccionar archivo...' /> 
+                        <input type="text" class="form-control" name="file" placeholder='Seleccionar archivo...' /> 
                         <span class="input-group-btn">
                             <button class="btn btn-warning btn-reset" type="button">Reset</button>
                         </span>
