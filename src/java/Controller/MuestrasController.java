@@ -190,7 +190,7 @@ public class MuestrasController extends HttpServlet {
         //--BUSCAR SOLICITUD MEDICA--\\
         else if(menu.equalsIgnoreCase("AsignarItems")){
             
-            request.getRequestDispatcher("MuestrasController?menu=AsignacionDeItems").forward(request, response);
+            request.getRequestDispatcher("AsignacionDeItems.jsp").forward(request, response);
         }        
         
     }

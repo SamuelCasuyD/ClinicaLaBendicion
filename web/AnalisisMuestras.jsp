@@ -4,6 +4,7 @@
     Author     : SammyKazzu
 --%>
 <%@include file="Header.jsp" %>
+
 <div class="container">
     <div class="card">
             <h5 class="card-header">Muestras Medicas</h5>
@@ -64,4 +65,6 @@
             </div>
         </div>    
 </div>
+
+<button class="btn btn-outline-secondary" onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-chevron-up"></i></button>
 <%@include file="footer.jsp" %>
