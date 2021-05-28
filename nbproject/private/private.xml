@@ -11,22 +11,6 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-<<<<<<< Updated upstream
-            <file>file:/C:/Users/Alexander%20Elias/Documents/proyectoProgramacion/ClinicaLaBendicion/src/java/Controller/AnalisisSolicitudesController.java</file>
-            <file>file:/C:/Users/Alexander%20Elias/Documents/proyectoProgramacion/ClinicaLaBendicion/web/AnalisisSolicitudes.jsp</file>
-            <file>file:/C:/Users/Alexander%20Elias/Documents/proyectoProgramacion/ClinicaLaBendicion/src/java/Controller/SolicitudesController.java</file>
-            <file>file:/C:/Users/Alexander%20Elias/Documents/proyectoProgramacion/ClinicaLaBendicion/web/Header.jsp</file>
-=======
-            <file>file:/C:/Users/SammyKazzu/Documents/GitHub/ClinicaLaBendicion/web/ActualizarMuestra.jsp</file>
-            <file>file:/C:/Users/SammyKazzu/Documents/GitHub/ClinicaLaBendicion/src/java/Controller/MuestrasController.java</file>
-            <file>file:/C:/Users/SammyKazzu/Documents/GitHub/ClinicaLaBendicion/web/AsignacionDeItems.jsp</file>
-            <file>file:/C:/Users/SammyKazzu/Documents/GitHub/ClinicaLaBendicion/web/CrearMuestra.jsp</file>
-            <file>file:/C:/Users/SammyKazzu/Documents/GitHub/ClinicaLaBendicion/src/java/API/TipoMuestraAPI.java</file>
-            <file>file:/C:/Users/SammyKazzu/Documents/GitHub/ClinicaLaBendicion/src/java/Models/ItemsDTO.java</file>
-            <file>file:/C:/Users/SammyKazzu/Documents/GitHub/ClinicaLaBendicion/web/AnalisisMuestras.jsp</file>
-            <file>file:/C:/Users/SammyKazzu/Documents/GitHub/ClinicaLaBendicion/web/footer.jsp</file>
->>>>>>> Stashed changes
-        </group>
+        <group/>
     </open-files>
 </project-private>

@@ -5,7 +5,7 @@
 --%>
 <%@include file="Header.jsp" %>
 
-<div class="container">
+<div class="container mt-4">
     <div class="card">
             <h5 class="card-header">Muestras Medicas</h5>
             <div class="card-body">
