@@ -7,10 +7,14 @@ package Controller;
 
 import API.EstadosSolicitudesAPI;
 import API.SolicitudesMedicasAPI;
+import API.TipoSolicitanteAPI;
 import API.TipoSolicitudAPI;
+import API.TipoSoporteAPI;
 import Models.EstadosSolicitudesDTO;
 import Models.SolicitudesMedicasDTO;
+import Models.TipoSolicitanteDTO;
 import Models.TipoSolicitudDTO;
+import Models.TipoSoporteDTO;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +34,22 @@ public class SolicitudesController extends HttpServlet {
     SolicitudesMedicasDTO findSolMedicById = new SolicitudesMedicasDTO();
     SolicitudesMedicasAPI findSolMedicByIdAPI = new SolicitudesMedicasAPI();
     List<SolicitudesMedicasDTO> listS = new ArrayList<>(); 
-
+    
+    
+    TipoSolicitanteAPI TsolicitanteAPI=new TipoSolicitanteAPI();
+    List<TipoSolicitanteDTO> TsolicitanteDTO = new ArrayList<>();
+    
+    TipoSoporteDTO sPExterno = new TipoSoporteDTO();
+    TipoSoporteAPI spEDAO = new TipoSoporteAPI();
+    List<TipoSoporteDTO> ListaSoporteInterno = new ArrayList<>();    
+    List<TipoSoporteDTO> ListaSoporteExterno = new ArrayList<>();
+    
+    TipoSolicitudAPI TSd_dao = new TipoSolicitudAPI();
+    List<TipoSolicitudDTO> Tsolicitud = new ArrayList<>();
+     
+     
+    EstadosSolicitudesAPI estSoliDAO = new EstadosSolicitudesAPI();
+    List<EstadosSolicitudesDTO> ListarEstados = new ArrayList<>();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -46,16 +65,26 @@ public class SolicitudesController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String menu = request.getParameter("menu");        
         
-        TipoSolicitudAPI TSd_dao = new TipoSolicitudAPI();
-        List<TipoSolicitudDTO> Tsolicitud = new ArrayList<>();
+       
         Tsolicitud = TSd_dao.listarTsolicitud();
         request.setAttribute("TipoSolicitud", Tsolicitud);
 
-        EstadosSolicitudesAPI estSoliDAO = new EstadosSolicitudesAPI();
-        List<EstadosSolicitudesDTO> ListarEstados = new ArrayList<>();
+       
         ListarEstados = estSoliDAO.listarEstadosSolicitudes();
         request.setAttribute("estados", ListarEstados);
         
+        
+        TsolicitanteDTO = TsolicitanteAPI.listar();
+        
+        request.setAttribute("tipoSolicitante", TsolicitanteDTO);
+        
+         ListaSoporteInterno = spEDAO.listarSoporteInterno();
+         ListaSoporteExterno = spEDAO.listarSoporteExterno();
+         request.setAttribute("SoporteInt", ListaSoporteInterno);
+         request.setAttribute("SoporteExt", ListaSoporteExterno);
+         
+         
+         
         if (menu.equalsIgnoreCase("principal")){
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
         }
@@ -134,8 +163,7 @@ public class SolicitudesController extends HttpServlet {
             listS= findSolMedicByIdAPI.listarSolicitudes();
             request.setAttribute("listSol",listS);
             request.getRequestDispatcher("SolicitudesController?menu=mantenimiento").forward(request, response);
-        }
-            else{
+        } else{
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
         }
     }

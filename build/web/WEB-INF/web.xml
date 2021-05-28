@@ -12,6 +12,10 @@
         <servlet-name>TrazabilidadController</servlet-name>
         <servlet-class>Controller.TrazabilidadController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AnalisisSolicitudesController</servlet-name>
+        <servlet-class>Controller.AnalisisSolicitudesController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/UsuarioController</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>TrazabilidadController</servlet-name>
         <url-pattern>/TrazabilidadController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AnalisisSolicitudesController</servlet-name>
+        <url-pattern>/AnalisisSolicitudesController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

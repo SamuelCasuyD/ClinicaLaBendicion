@@ -4,7 +4,7 @@ package Models;
  *
  * @author Alexander Elias
  */
-public class ExpedientesDto {
+public class ExpedientesDTO {
     
     int idexpediente;
     String noExpediente;
@@ -27,12 +27,12 @@ public class ExpedientesDto {
     String observaciones;
     String origen;
 
-    public ExpedientesDto() {
+    public ExpedientesDTO() {
     }
     
     
 
-    public ExpedientesDto(int idexpediente, String noExpediente, String dpi, String primerNombre, String segundoNombre, String otroNombre, String primerApellido, String segundoApellido, String fechaNacimiento, String telDomicilio, String telMovil, String email, String nit, String fechaCreacion, String fechaModificacion, String usuarioCreacion, String usuarioModificacion, String numeroFactura, String observaciones, String origen) {
+    public ExpedientesDTO(int idexpediente, String noExpediente, String dpi, String primerNombre, String segundoNombre, String otroNombre, String primerApellido, String segundoApellido, String fechaNacimiento, String telDomicilio, String telMovil, String email, String nit, String fechaCreacion, String fechaModificacion, String usuarioCreacion, String usuarioModificacion, String numeroFactura, String observaciones, String origen) {
         this.idexpediente = idexpediente;
         this.noExpediente = noExpediente;
         this.dpi = dpi;

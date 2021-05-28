@@ -6,9 +6,18 @@
 package Controller;
 
 import API.ExpedientesAPI;
-import Models.ExpedientesDto;
+import API.SolicitudesMedicasAPI;
+import API.TipoSolicitanteAPI;
+import API.TipoSolicitudAPI;
+import API.TipoSoporteAPI;
+import Models.ExpedientesDTO;
+import Models.SolicitudesMedicasDTO;
+import Models.TipoSolicitanteDTO;
+import Models.TipoSolicitudDTO;
+import Models.TipoSoporteDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -23,7 +32,24 @@ import javax.servlet.http.HttpServletResponse;
 public class ExpedientesController extends HttpServlet {
     
       ExpedientesAPI expAPI = new  ExpedientesAPI();    
-    List<ExpedientesDto> listaExpediente = new ArrayList<>();
+    List<ExpedientesDTO> listaExpediente = new ArrayList<>();
+    
+    ExpedientesDTO exp = new ExpedientesDTO();
+    ExpedientesAPI expdao = new ExpedientesAPI();
+    
+     TipoSolicitanteAPI TsolicitanteAPI=new TipoSolicitanteAPI();
+    List<TipoSolicitanteDTO> TsolicitanteDTO = new ArrayList<>();
+    
+    TipoSoporteDTO sPExterno = new TipoSoporteDTO();
+    TipoSoporteAPI spEDAO = new TipoSoporteAPI();
+    List<TipoSoporteDTO> ListaSoporteInterno = new ArrayList<>();    
+    List<TipoSoporteDTO> ListaSoporteExterno = new ArrayList<>();
+    
+    TipoSolicitudAPI TSd_dao = new TipoSolicitudAPI();
+    List<TipoSolicitudDTO> Tsolicitud = new ArrayList<>();
+    
+    SolicitudesMedicasDTO SolMedic = new SolicitudesMedicasDTO();
+    SolicitudesMedicasAPI SolMedicDao = new SolicitudesMedicasAPI();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,6 +65,8 @@ public class ExpedientesController extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
         String menu = request.getParameter("menu");
+        
+        
          if (menu.equalsIgnoreCase("principal")){
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
         }
@@ -46,12 +74,85 @@ public class ExpedientesController extends HttpServlet {
         else if (menu.equalsIgnoreCase("expedientes")){
         
             
-            listaExpediente = expAPI.listarExpediente();
-            request.setAttribute("expedientes", listaExpediente);
+             listaExpediente = expAPI.listarExpediente();
+             request.setAttribute("expedientes", listaExpediente);
+
+             
             
             request.getRequestDispatcher("Expedientes.jsp").forward(request, response);
         }else if (menu.equalsIgnoreCase("muestras")){
+            
             request.getRequestDispatcher("MuestrasController?menu=analisis").forward(request, response);
+            
+        }else if (menu.equalsIgnoreCase("Buscar")){  
+            String NumExpediente = request.getParameter("txtNoExpediente");
+            exp = expdao.lisExpedientestById(NumExpediente);
+           if (exp.getNoExpediente()!=null) {
+               
+               Tsolicitud = TSd_dao.listarTsolicitud();
+             request.setAttribute("TipoSolicitud", Tsolicitud);
+             TsolicitanteDTO = TsolicitanteAPI.listar();
+
+             request.setAttribute("tipoSolicitante", TsolicitanteDTO);
+
+             ListaSoporteInterno = spEDAO.listarSoporteInterno();
+             ListaSoporteExterno = spEDAO.listarSoporteExterno();
+             request.setAttribute("SoporteInt", ListaSoporteInterno);
+             request.setAttribute("SoporteExt", ListaSoporteExterno);
+               
+                request.setAttribute("expediente", exp);
+                request.setAttribute("nombre", exp.getPrimerNombre() + " " + exp.getPrimerApellido());
+                
+                request.getRequestDispatcher("CrearSolicitud.jsp").forward(request, response);
+                
+            }else{
+               
+                request.setAttribute("mensaje", "<label class='alert alert-danger' role='alert'>El número de expediente no existe</label>");
+                request.getRequestDispatcher("CrearSolicitud.jsp").forward(request, response);
+            }
+           
+           
+        }else if(menu.equalsIgnoreCase("Siguiente")){
+            String tipoSolicitante = request.getParameter("slcTpolicitante");
+            String tipoSolicitud = request.getParameter("slcTpolicitud");
+            String Descripcion = request.getParameter("Descripcion");
+            
+            String Descripcion2 = Descripcion.replaceAll("\\s","");
+            
+            String NumExpediente = request.getParameter("txtNoExpediente");
+            String nit = request.getParameter("Nit");
+            String nombre = request.getParameter("Nombre");
+            String numTel = request.getParameter("txtNoTel");
+            String email = request.getParameter("txtGmail");
+            String fechaCreacion = Fecha.FechaDB();
+            int usuarioCreacion = 2;    
+            String tipoSoporte = request.getParameter("Soporte");
+            String numSoporte = request.getParameter("txtSoporte");
+            int estado = 1;
+            
+            
+            SolMedic.setTipoSolicitante(parseInt(tipoSolicitante));
+            SolMedic.setTipoSolicitud(parseInt(tipoSolicitud));
+            SolMedic.setDescripcion(Descripcion2);
+            SolMedic.setNumExpediente(NumExpediente);
+            SolMedic.setNit(nit);
+            SolMedic.setNombre(nombre);
+            SolMedic.setTelefono(numTel);
+            SolMedic.setEmail(email);
+            SolMedic.setFechaCreacion(fechaCreacion);
+            SolMedic.setUsuarioCreacion(usuarioCreacion);
+            SolMedic.setTipoSoporte(parseInt(tipoSoporte));
+            SolMedic.setNumSoporte(numSoporte);
+            SolMedic.setEstadoSolicitud(estado);
+        
+            SolMedicDao.add(SolMedic);  
+            
+            SolMedic = SolMedicDao.listarExpediente(1);
+             
+            request.setAttribute("exp", SolMedic);
+          
+            
+             request.getRequestDispatcher("CrearSolicitud.jsp").forward(request, response);
         }
     }
 

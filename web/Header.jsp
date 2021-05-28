@@ -55,6 +55,8 @@
         %>      
         
         <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
+        
+  
             
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="dropdown">
@@ -95,6 +97,10 @@
                         <li class="nav-item">
                             <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="SolicitudesController?menu=mantenimiento">Mantenimiento de Solicictudes</a>
                         </li>
+                        <li class="nav-item">
+                            <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="AnalisisSolicitudesController?menu=AnalisisSolicitudes">Analisis de solicitudes</a>
+                        </li>
                     </ul>      
                 </div>
             </nav>
+      </div> 

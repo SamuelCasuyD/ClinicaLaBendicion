@@ -153,6 +153,70 @@ public class SolicitudesMedicasAPI {
         
         return  SolMed;
     }
+     
+       public int add(SolicitudesMedicasDTO sol) {
+        String sql = "INSERT INTO solicitudes_medicas(tipoSolicitante, tipoSolicitud,Descripcion, NoExpediente, nit,nombre,Telefono, email, FechaCreacion,UsuarioCreacion,tipoSoporte, numSoporte,estado_solicitud) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        
+        try {
+
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            
+            ps.setInt(1,sol.getTipoSolicitante());
+            ps.setInt(2, sol.getTipoSolicitud());
+            ps.setString(3, sol.getDescripcion());
+            ps.setString(4, sol.getNumExpediente());
+            ps.setString(5, sol.getNit());
+            ps.setString(6, sol.getNombre());
+            ps.setString(7, sol.getTelefono());
+            ps.setString(8, sol.getEmail());
+            ps.setString(9, sol.getFechaCreacion());
+            ps.setInt(10, sol.getUsuarioCreacion());
+            ps.setInt(11, sol.getTipoSoporte());
+            ps.setString(12, sol.getNumSoporte());
+            ps.setInt(13, sol.getEstadoSolicitud());
+            
+                  
+            r = ps.executeUpdate();
+            
+            String sql2 = "INSERT INTO tipos_solicitante_recovery(codigoTipoSolicitud) VALUES (?)";            
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql2);
+            ps.setInt(1, sol.getTipoSolicitante());
+            r = ps.executeUpdate();
+            
+            
+            /*sql="select codigoSolicitud from solicitudes_medicas order by idSolicitudes desc limit 1";
+            rs=ps.executeQuery(sql);
+            rs.next();
+            CodigoSolicitud = rs.getString("idCompras");
+            rs.close();*/
+
+        } catch (Exception e) {
+
+        }
+
+        return r;
+    }
+       
+       public SolicitudesMedicasDTO listarExpediente(int limit){
+        SolicitudesMedicasDTO solmedica = new SolicitudesMedicasDTO();
+        String sql="select codigoSolicitud from solicitudes_medicas order by idSolicitudes desc limit ?";
+        
+        try{
+            con=cn.getConnection();
+            ps=con.prepareStatement(sql);
+            ps.setInt(1, limit);
+            rs=ps.executeQuery();
+            
+            while(rs.next()){                
+               solmedica.setCodigoSolicitud(rs.getString("codigoSolicitud"));                                          
+                            }
+        } catch(Exception e){           
+        }        
+        return solmedica;
+        
+    }
     
     
     

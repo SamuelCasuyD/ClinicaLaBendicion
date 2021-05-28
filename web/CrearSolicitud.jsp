@@ -22,7 +22,7 @@
                             <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
 
-                        <form id="regiration_form"  action="Consultas"  method="POST">
+                        <form id="regiration_form"  action="ExpedientesController"  method="POST">
 
 
 
@@ -34,7 +34,7 @@
                                         <div class="col-sm-6">
                                             <label for="slcTpolicitante">Tipo de Solicitante</label>
                                             <select name="slcTpolicitante" class="form-control" >
-                                                <c:forEach var="TS" items="${TipoSolicitante}">
+                                                <c:forEach var="TS" items="${tipoSolicitante}">
                                                     <option value="${TS.getIdTipoSolicitnate()}">${TS.getNombreTipoSolicitante()}</option>
                                                 </c:forEach>
                                             </select>
@@ -62,7 +62,7 @@
                                                     ${mensaje}                                                           
                                                 </div>
                                                 <div class="col-sm-4">                                                            
-                                                    <input type="submit" name="accion" value="Buscar" class="btn btn-primary btn-b">
+                                                    <input type="submit" name="menu" value="Buscar" class="btn btn-primary btn-b">
                                                 </div>  
                                             </div>
                                         </div>
@@ -142,7 +142,7 @@
                                 </div>   
 
                                 <br><input type="button" name="previous" class="previous btn btn-warning" value="Regresar" />
-                                <input type="submit" name="accion" class="submit btn btn-success" value="Siguiente" />
+                                <input type="submit" name="menu" class="submit btn btn-success" value="Siguiente" />
                                 <a href="SolicitudesController?menu=mantenimiento" class="btn btn-danger">Cancelar</a> 
                             </fieldset>
                             <!--**********************************************************************************************************-->
