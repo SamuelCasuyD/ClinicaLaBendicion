@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpSolicitudesMedicas" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="805c75d1-e548-4675-9113-5359409ce3f7">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ClinicaMedica"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT A.codigoSolicitud, A.NoExpediente, A.nit, A.numSoporte, D.nombreSoporte, E.nombreTipoSolicitante, B.nombreTipoSolicitud, A.UsuarioAsignacion, C.nombreEstadoSolicitud, A.UsuarioCreacion, A.FechaCreacion, A.Descripcion, A.nombre, A.Telefono, A.email FROM solicitudes_medicas as A, tipos_solicitudes as B, estados_solicitudes as C, soporte as D, tipos_solicitantes as E WHERE C.idEstadoSolicitud = A.estado_solicitud AND B.idTipoSolicitud= A.tipoSolicitud AND A.tipoSolicitante = E.idTipoSolicitante AND A.tipoSoporte = D.idSoporte]]>
+	</queryString>
+	<field name="codigoSolicitud" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="codigoSolicitud"/>
+		<property name="com.jaspersoft.studio.field.label" value="codigoSolicitud"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="solicitudes_medicas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NoExpediente" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="NoExpediente"/>
+		<property name="com.jaspersoft.studio.field.label" value="NoExpediente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="solicitudes_medicas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nit" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nit"/>
+		<property name="com.jaspersoft.studio.field.label" value="nit"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="solicitudes_medicas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numSoporte" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="numSoporte"/>
+		<property name="com.jaspersoft.studio.field.label" value="numSoporte"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="solicitudes_medicas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombreSoporte" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombreSoporte"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombreSoporte"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="soporte"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombreTipoSolicitante" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombreTipoSolicitante"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombreTipoSolicitante"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipos_solicitantes"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombreTipoSolicitud" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombreTipoSolicitud"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombreTipoSolicitud"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipos_solicitudes"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="UsuarioAsignacion" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="UsuarioAsignacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="UsuarioAsignacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="solicitudes_medicas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombreEstadoSolicitud" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombreEstadoSolicitud"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombreEstadoSolicitud"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="estados_solicitudes"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="UsuarioCreacion" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="UsuarioCreacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="UsuarioCreacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="solicitudes_medicas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FechaCreacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="FechaCreacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="FechaCreacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="solicitudes_medicas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Descripcion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Descripcion"/>
+		<property name="com.jaspersoft.studio.field.label" value="Descripcion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="solicitudes_medicas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="solicitudes_medicas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Telefono" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Telefono"/>
+		<property name="com.jaspersoft.studio.field.label" value="Telefono"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="solicitudes_medicas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="email"/>
+		<property name="com.jaspersoft.studio.field.label" value="email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="solicitudes_medicas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
