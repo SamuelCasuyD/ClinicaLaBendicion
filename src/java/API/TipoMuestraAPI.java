@@ -319,4 +319,23 @@ public class TipoMuestraAPI {
         return idSoli;
     }
     
+    public TipoMuestraDTO BuscarItem(String codigoSolicitud){
+        TipoMuestraDTO idSoli = new TipoMuestraDTO();
+        String sql="select* from muestra where NumMuestra  = ?";
+        
+        try{
+            con=cn.getConnection();
+            ps=con.prepareStatement(sql);
+            ps.setString(1, codigoSolicitud);
+            rs=ps.executeQuery();
+            
+            while(rs.next()){
+                idSoli.setIdMuestra(rs.getInt("IdMuestra"));
+                idSoli.setNumMuestra(rs.getString("NumMuestra"));  
+            }
+        } catch(Exception e){
+        }
+        return idSoli;
+    }
+    
 }

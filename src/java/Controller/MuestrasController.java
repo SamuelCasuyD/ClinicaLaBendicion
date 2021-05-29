@@ -91,8 +91,7 @@ public class MuestrasController extends HttpServlet {
             request.getRequestDispatcher("CrearMuestra.jsp").forward(request, response);
         }
         //--CREAR MUESTAS MEDICAS--\\
-        else if(menu.equalsIgnoreCase("NewMuestras")){
-            
+        else if(menu.equalsIgnoreCase("NewMuestras")){            
             
             String IdTipoMuestra = request.getParameter("slcMuestra");
             String Presentacion = request.getParameter("TxtPresentacion");    
@@ -123,9 +122,7 @@ public class MuestrasController extends HttpServlet {
             Muestra = ListMuestra.listUniMedida();
             request.setAttribute("medida", Muestra);
             
-            int IdMuestra;
-            IdMuestra = Integer.parseInt(request.getParameter("id"));
-            
+            int IdMuestra = Integer.parseInt(request.getParameter("id"));            
             TipoMuestraDTO puntoID = ListMuestra.ModificarX_ID(IdMuestra);
             
             request.setAttribute("datoMu", puntoID);
@@ -189,35 +186,28 @@ public class MuestrasController extends HttpServlet {
         //--VINCULAR SOLICITUD MEDICA--\\
         else if(menu.equalsIgnoreCase("AsignarItems")){
             
+            
+            String IdMuestra = request.getParameter("id");
+            if(IdMuestra != null ){
+                TipoMuestraDTO puntoID = ListMuestra.BuscarItem(IdMuestra);
+                request.setAttribute("itemsList", puntoID);
+            }   
+            
             String IdSolicitud = request.getParameter("solicitudM");
             if(IdSolicitud != null)
             {
+                Muestra = ListMuestra.ListarItems();
+                request.setAttribute("itemsList", Muestra);
+                
+
                 SolicitudesMedicasDTO usuarioID = ListMuestra.Buscasoli(IdSolicitud);
                 request.setAttribute("soli", usuarioID);
-            }     
-                 
-            
-            
-            //if(IdSolicitud > 0)
-            //{                
-                //SolicitudesMedicasDTO usuarioID = ListMuestra.BuscarSolicitud(IdSolicitud);
-               // request.setAttribute("soli", usuarioID);
-            //}
-
-            
-            //SolicitudesMedicasDTO usuarioID = ListMuestra.BuscarSolicitud(IdSolicitud);
-            //request.setAttribute("soli", usuarioID);
+            }
             
             request.getRequestDispatcher("AsignacionDeItems.jsp").forward(request, response);
         }
-        //--BUSCAR SOLICITUD MEDICA--\\
-        else if(menu.equalsIgnoreCase("AsignarItemsuu")){            
-           
-            request.getRequestDispatcher("AsignacionDeItems.jsp").forward(request, response);
-        }    
         
-    }
-    
+    }    
     
     private void saveCustomer(HttpServletRequest req, HttpServletResponse resp){
         

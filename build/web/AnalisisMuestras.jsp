@@ -33,11 +33,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
                         <c:forEach var="list" items="${listMuestras}">
                         <%! int contador = 1;%>
                         <tr> 
-                            <td style="text-align: center">${contador}</td>
+                            <td style="text-align: center"><%= contador%></td>
                             <td>${list.getNumMuestra()}</td>
                             <td>${list.getIdTipoMuestra()}</td>
                             <td>${list.getPresentacion()}</td>
@@ -51,15 +50,18 @@
                                     <a href="MuestrasController?menu=EliminarMuestra&id=${list.getIdMuestra()}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true" data-toggle="tooltip" title="Eliminar">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
+                                    <a href="MuestrasController?menu=AsignarItems&id=${list.getNumMuestra()}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true" data-toggle="tooltip" title="Agregar Items">
+                                        <i class="fas fa-cubes"></i>
+                                    </a>
                                     <a href="MuestrasController?menu=CardarDatos&id=${list.getIdMuestra()}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true" data-toggle="tooltip" title="Editar">
                                         <i class="far fa-edit"></i>
                                     </a>
                                 </div>
                             </td>
                             <% contador++; %>
-                        </tr>
-                        
+                        </tr>                        
                         </c:forEach>
+                        <% contador = 1; %>
                     </tbody>
                 </table>
             </div>
