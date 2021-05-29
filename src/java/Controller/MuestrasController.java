@@ -179,19 +179,42 @@ public class MuestrasController extends HttpServlet {
         else if(menu.equalsIgnoreCase("BuscarS")){
             int IdMuestra;
             IdMuestra = Integer.parseInt(request.getParameter("id"));
-            ListMuestra.BuscarSolicitud(IdMuestra);
+            //ListMuestra.BuscarSolicitud(IdMuestra);            
             
-            
-            SolicitudesMedicasDTO usuarioID = ListMuestra.BuscarSolicitud(IdMuestra);
-            request.setAttribute("solicitudS", usuarioID);
+            //SolicitudesMedicasDTO usuarioID = ListMuestra.BuscarSolicitud(IdMuestra);
+            //request.setAttribute("solicitudS", usuarioID);
             
             request.getRequestDispatcher("MuestrasController?menu=CrearMuestra").forward(request, response);
         }
-        //--BUSCAR SOLICITUD MEDICA--\\
+        //--VINCULAR SOLICITUD MEDICA--\\
         else if(menu.equalsIgnoreCase("AsignarItems")){
             
+            String IdSolicitud = request.getParameter("solicitudM");
+            if(IdSolicitud != null)
+            {
+                SolicitudesMedicasDTO usuarioID = ListMuestra.Buscasoli(IdSolicitud);
+                request.setAttribute("soli", usuarioID);
+            }     
+                 
+            
+            
+            //if(IdSolicitud > 0)
+            //{                
+                //SolicitudesMedicasDTO usuarioID = ListMuestra.BuscarSolicitud(IdSolicitud);
+               // request.setAttribute("soli", usuarioID);
+            //}
+
+            
+            //SolicitudesMedicasDTO usuarioID = ListMuestra.BuscarSolicitud(IdSolicitud);
+            //request.setAttribute("soli", usuarioID);
+            
             request.getRequestDispatcher("AsignacionDeItems.jsp").forward(request, response);
-        }        
+        }
+        //--BUSCAR SOLICITUD MEDICA--\\
+        else if(menu.equalsIgnoreCase("AsignarItemsuu")){            
+           
+            request.getRequestDispatcher("AsignacionDeItems.jsp").forward(request, response);
+        }    
         
     }
     

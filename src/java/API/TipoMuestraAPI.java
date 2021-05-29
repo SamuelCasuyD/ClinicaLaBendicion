@@ -298,39 +298,25 @@ public class TipoMuestraAPI {
         return r;
     }
     
-    public SolicitudesMedicasDTO BuscarSolicitud(int id) {
-        SolicitudesMedicasDTO idSol = new SolicitudesMedicasDTO();
-        String sql = "SELECT * FROM solicitudes_medicas WHERE idSolicitudes=" + id;
-        try {
-            con = cn.getConnection();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery(); 
+    public SolicitudesMedicasDTO Buscasoli(String codigoSolicitud){
+        SolicitudesMedicasDTO idSoli = new SolicitudesMedicasDTO();
+        String sql="select* from solicitudes_medicas where codigoSolicitud = ?";
+        
+        try{
+            con=cn.getConnection();
+            ps=con.prepareStatement(sql);
+            ps.setString(1, codigoSolicitud);
+            rs=ps.executeQuery();
             
-            while (rs.next()) {
-               idSol.setIdSolicitud(rs.getInt("idSolicitudes"));// A.codigoSolicitud, 
-               idSol.setCodigoSolicitud(rs.getString("codigoSolicitud")); //A.NoExpediente,
-               idSol.setNumExpediente(rs.getString("NoExpediente")); //A.NoExpediente,
-               //sol.setNit(rs.getString(3)); // A.nit, 
-               //sol.setNumSoporte(rs.getString(4)); //   A.numSoporte,
-               //sol.setNombreSoporte(rs.getString(5));   //  D.nombreSoporte, 
-               //sol.setNombreTipoSolicitante(rs.getString(6)); // E.nombreTipoSolicitante,
-               //sol.setNombreTipoSolicitud(rs.getString(7));      //B.nombreTipoSolicitud,
-               //sol.setUsuarioAsignacion(rs.getInt(8)); // A.UsuarioAsignacion,               
-               //sol.setNombreEstadoSolicitud(rs.getString(9)); //C.nombreEstadoSolicitud,               
-               //sol.setUsuarioCreacion(rs.getInt(10));// A.UsuarioCreacion,               
-               //sol.setFechaCreacion(rs.getString(11));                
-               //sol.setDescripcion(rs.getString(12));               
-               idSol.setNombre(rs.getString("nombre"));               
-               //sol.setTelefono(rs.getString(14));
-               //sol.setEmail(rs.getString(15));
+            while(rs.next()){
+                idSoli.setIdSolicitud(rs.getInt("idSolicitudes"));// A.codigoSolicitud, 
+                idSoli.setCodigoSolicitud(rs.getString("codigoSolicitud")); //A.NoExpediente,
+                idSoli.setNumExpediente(rs.getString("NoExpediente")); //A.NoExpediente,
+                idSoli.setNombre(rs.getString("nombre")); //A.NoExpediente, 
             }
-            
-        } catch (SQLException e) {
-            System.out.println("Código de Error: " + e.getErrorCode() + "\n"
-                    + "SLQState: " + e.getSQLState() + "\n"
-                    + "Mensaje: " + e.getMessage() + "\n");
+        } catch(Exception e){
         }
-        return idSol;
+        return idSoli;
     }
     
 }
