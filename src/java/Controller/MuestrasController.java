@@ -28,6 +28,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 /**
@@ -62,9 +63,11 @@ public class MuestrasController extends HttpServlet {
      */
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        
+        response.setContentType("text/html;charset=UTF-8");        
         String menu = request.getParameter("menu");
+        
+        HttpSession session =  request.getSession(true);
+        TipoMuestraDTO TMuestra = (TipoMuestraDTO) session.getAttribute("Muestra"); 
         
         if (menu.equalsIgnoreCase("principal")){
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
@@ -94,10 +97,10 @@ public class MuestrasController extends HttpServlet {
         else if(menu.equalsIgnoreCase("NewMuestras")){            
             
             String IdTipoMuestra = request.getParameter("slcMuestra");
-            String Presentacion = request.getParameter("TxtPresentacion");    
+            String Presentacion = request.getParameter("TxtPresentacion");
             String Cantidad = request.getParameter("cantidad");
-            String UniMedida = request.getParameter("unidadmedida");   
-            String idsolicitud = request.getParameter("idsolicitud");
+            String UniMedida = request.getParameter("unidadmedida");
+            //String idsolicitud = request.getParameter("idsolicitud");
             
             boolean estado = false;
                         
@@ -107,7 +110,7 @@ public class MuestrasController extends HttpServlet {
             Create.setIdUnidadMedida(parseInt(UniMedida));            
             Create.setFechaCreacion(sqlDate);
             Create.setEliminado(estado);
-            Create.setIdMuestra(parseInt(idsolicitud));
+            //Create.setIdMuestra(parseInt(idsolicitud));
             ListMuestra.CrearMuestra(Create);
             
             saveCustomer(request, response);
@@ -184,14 +187,14 @@ public class MuestrasController extends HttpServlet {
             request.getRequestDispatcher("MuestrasController?menu=CrearMuestra").forward(request, response);
         }
         //--VINCULAR SOLICITUD MEDICA--\\
-        else if(menu.equalsIgnoreCase("AsignarItems")){
-            
+        else if(menu.equalsIgnoreCase("AsignarItems")) {
             
             String IdMuestra = request.getParameter("id");
             if(IdMuestra != null ){
                 TipoMuestraDTO puntoID = ListMuestra.BuscarItem(IdMuestra);
-                request.setAttribute("itemsList", puntoID);
-            }   
+                request.setAttribute("asItem", puntoID);
+                session.setAttribute("Muestra", puntoID);
+            }            
             
             String IdSolicitud = request.getParameter("solicitudM");
             if(IdSolicitud != null)
