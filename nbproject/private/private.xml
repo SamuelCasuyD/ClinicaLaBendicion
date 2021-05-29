@@ -12,10 +12,12 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Alexander%20Elias/Documents/proyectoProgramacion/ClinicaLaBendicion/src/java/API/SolicitudesMedicasAPI.java</file>
-            <file>file:/C:/Users/Alexander%20Elias/Documents/proyectoProgramacion/ClinicaLaBendicion/src/java/Controller/ExpedientesController.java</file>
-            <file>file:/C:/Users/Alexander%20Elias/Documents/proyectoProgramacion/ClinicaLaBendicion/src/java/Reportes/Servlets/reportePDF.java</file>
-            <file>file:/C:/Users/Alexander%20Elias/Documents/proyectoProgramacion/ClinicaLaBendicion/src/java/API/ExpedientesAPI.java</file>
+            <file>file:/C:/Users/SammyKazzu/Documents/GitHub/ClinicaLaBendicion/src/java/API/TipoMuestraAPI.java</file>
+            <file>file:/C:/Users/SammyKazzu/Documents/GitHub/ClinicaLaBendicion/web/MuestraEliminada.jsp</file>
+            <file>file:/C:/Users/SammyKazzu/Documents/GitHub/ClinicaLaBendicion/src/java/Models/SolicitudesMedicasDTO.java</file>
+            <file>file:/C:/Users/SammyKazzu/Documents/GitHub/ClinicaLaBendicion/web/AnalisisMuestras.jsp</file>
+            <file>file:/C:/Users/SammyKazzu/Documents/GitHub/ClinicaLaBendicion/src/java/Controller/MuestrasController.java</file>
+            <file>file:/C:/Users/SammyKazzu/Documents/GitHub/ClinicaLaBendicion/web/AsignacionDeItems.jsp</file>
         </group>
     </open-files>
 </project-private>
