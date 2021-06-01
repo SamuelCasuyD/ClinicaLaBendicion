@@ -319,7 +319,7 @@ public class TipoMuestraAPI {
         return idSoli;
     }
     
-    public TipoMuestraDTO BuscarItem(String codigoSolicitud){
+    public TipoMuestraDTO BuscarNoMuestra(String codigoSolicitud){
         TipoMuestraDTO idSoli = new TipoMuestraDTO();
         String sql="select* from muestra where NumMuestra  = ?";
         
