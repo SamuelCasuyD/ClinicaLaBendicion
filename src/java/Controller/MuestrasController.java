@@ -197,6 +197,9 @@ public class MuestrasController extends HttpServlet {
             {
                 request.setAttribute("Muestra", Create);                
             }
+            
+            Muestra = ListMuestra.ListarItems();
+            request.setAttribute("itemsList", Muestra);
             request.getRequestDispatcher("AsignacionDeItems.jsp").forward(request, response);
         }
         //--BUSCAR SOLICITUD MEDICA--\\

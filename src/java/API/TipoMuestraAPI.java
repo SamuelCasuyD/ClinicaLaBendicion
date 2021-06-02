@@ -98,7 +98,7 @@ public class TipoMuestraAPI {
     
     public List ListarItems() {
         List<ItemsDTO> item = new ArrayList<>();
-        String sql = "SELECT * FROM items WHERE Eliminado = 0 ";
+        String sql = "select * from items";
         
         try {
             con = cn.getConnection();
