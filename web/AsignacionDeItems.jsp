@@ -13,8 +13,7 @@
             
             <form action="MuestrasController" method="POST">
                 <div class="form-row">
-
-                    <div class="input-group col">
+                                        <div class="input-group col">
                         <input class="form-control col" type="text" name="NumSolicitud" id="NumSolicitud" aria-label="Recipient's username" aria-describedby="button-addon2" value="${BSoli.getCodigoSolicitud()}" placeholder="No. Solicitud Medica" />
                         <div class="input-group-append">
                             <a class="btn btn-outline-primary" href="MuestrasController?menu=BuscarSolMe&NumSolicitud=${BSoli.getCodigoSolicitud()}"  id="button-addon2">
