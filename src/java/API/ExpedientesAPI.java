@@ -20,21 +20,22 @@ public class ExpedientesAPI {
     ResultSet rs;
    
     
-     public List listarExpediente() {
+     public List listarExpediente(String numExpediente) {
          List<ExpedientesDTO> listExp= new ArrayList<>();
-        String sql="select* from expedientes";
+        String sql="select* from expedientes where NoExpediente = "+numExpediente;
        
        try{
            
            
            con=cn.getConnection();
-           ps=con.prepareStatement(sql);           
+           ps=con.prepareStatement(sql); 
+           //ps.setString(1, numExpediente);
            rs=ps.executeQuery();
            
            while(rs.next()){
                ExpedientesDTO exp= new ExpedientesDTO();
                exp.setIdexpediente(rs.getInt("idexpediente"));
-               exp.setNoExpediente(rs.getString("NoExpediente"));
+               exp.setNoExpediente(rs.getString("NoExpediente")); 
                exp.setObservaciones(rs.getString("observaciones"));
                exp.setOrigen(rs.getString("origen")); 
                

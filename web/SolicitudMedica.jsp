@@ -14,79 +14,81 @@
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <a href="SolicitudesController?menu=crearSolicitud" class="btn btn-outline-info" role="button" aria-pressed="true">Crear Solicitud</a>   
                         <a href="SolicitudesController?menu=consultaSolicitudes" class="btn btn-outline-info" role="button" aria-pressed="true">Consultar Solicitud</a> 
-                        <a href="SolicitudesController?menu=informacionGeneral" class="btn btn-outline-info" role="button" aria-pressed="true">Informacion General</a> 
-                        <a href="ExpedientesController?menu=expedientes" class="btn btn-outline-info" role="button" aria-pressed="true">Expediente</a> 
+                     
+                        
                         <a href="ExpedientesController?menu=muestras" class="btn btn-outline-info" role="button" aria-pressed="true">Muestras</a> 
-                        <a href="TrazabilidadController?menu=trazabilidad" class="btn btn-outline-info" role="button" aria-pressed="true">Trazabilidad</a>
+                      
                         
                     </div>            
-               <hr>
+               <hr> 
          
    
            </div>
 </div>
 </div>
 
-<!--*******************************************************************-->
+<!--*****************************************Tabla de datos***************************************************************-->
 <div class="container-fluid mt-4"  id="tabla" >
     <div class="card">
-         <h4 class="card-header">Información General</h4>   
+         <h4 class="card-header">Lista de Solicitudes</h4>        
         <div class="card-body">
             <table id="example" class="table table-bordered table-striped small">
-                <thead style="font-size: 8px">
+                 <thead style="font-size: 12px">
+                <th style="text-align: center">No</th>
                 <th class="text-center">Código solicitud</th>
                 <th class="text-center">No. expediente</th>
                 <th class="text-center">NIT</th>
                 <th class="text-center">No. soporte</th>
-                <th class="text-center">Tipo soporte</th>
                 <th class="text-center">Tipo solicitante</th>
-
                 <th class="text-center">Tipo solicitud</th>
                 <th class="text-center">Usuario asignación</th>
                 <th class="text-center">Estado solicitud</th>
                 <th class="text-center">Usuario creación</th>
                 <th class="text-center">Fecha creación</th>
-                <!-- <th class="text-center">Cantidad muestras</th>--> 
-
-                <!-- <th class="text-center">Cantidad ítems</th>--> 
-                <!-- <th class="text-center">Cantidad documentos</th>--> 
-                <th class="text-center">Descripción</th>
-                <th class="text-center">Solicitante</th>
-                <th class="text-center">Teléfonos</th>
-                <th class="text-center">Emails</th>
+                <th class="text-center">Opciones</th>
                 </thead>
-
-
-                <tbody style="font-size: 8px">
+                  <tbody style="font-size: 10px">
 
                     <c:forEach var="soli" items="${listSol}">
                     <input type="hidden" id="muestraTabla" value="${soli.getCodigoSolicitud()}">
+                    <%! int contador = 1;%>
                     <tr>
+                        <td style="text-align: center"><% out.println(contador); %></td>  
                         <td>${soli.getCodigoSolicitud()}</td>
                         <td>${soli.getNumExpediente()}</td>
                         <td>${soli.getNit()}</td>
-                        <td>${soli.getNumSoporte()}</td>    
-                        <td>${soli.getNombreSoporte()}</td>
+                        <td>${soli.getNumSoporte()}</td>                      
                         <td>${soli.getNombreTipoSolicitante()}</td>
                         <td>${soli.getNombreTipoSolicitud()}</td>
                         <td>${soli.getUsuarioAsignacion()}</td>  
                         <td>${soli.getNombreEstadoSolicitud()}</td>
                         <td>${soli.getUsuarioCreacion()}</td>
                         <td>${soli.getFechaCreacion()}</td>
-                        <!--<td></td>--> 
-                        <!--<td></td>-->
-                        <!--<td></td>-->
-                        <td>${soli.getDescripcion()}</td>
-                        <td>${soli.getNombre()}</td>
-                        <td>${soli.getTelefono()}</td>
-                        <td>${soli.getEmail()}</td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Opciones
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <button class="dropdown-item" type="button">Asociar</button>
+                                    <button class="dropdown-item" type="button">Desasociar</button>
+                                     <a href="TrazabilidadController?menu=Enviar&codSolicitud='${soli.getCodigoSolicitud()}'" class="dropdown-item" role="button" aria-pressed="true">Enviar</a>
+                                    <a href="TrazabilidadController?menu=trazabilidad" class="dropdown-item" role="button" aria-pressed="true">Trazabilidad</a>
+                                    <button class="dropdown-item" type="button">Eliminar</button>
+                                    <a href="ExpedientesController?menu=expedientes&numExpediente='${soli.getNumExpediente()}'" class="dropdown-item" role="button" aria-pressed="true">Expediente</a> 
+                                    <a href="SolicitudesController?menu=informacionGeneral" class="dropdown-item" role="button" aria-pressed="true">Informacion General</a> 
+                                </div>
+                            </div>                      
+                        </td>
 
-                    </tr>   
-                </c:forEach>                        
+                    </tr> 
+                    <% contador++; %>   
+                </c:forEach>    
+                <% contador = 1; %>      
                 </tbody>
             </table>  
         </div>  
     </div> 
 </div>
-<!--*******************************************************************-->
+              
 <%@include file="footer.jsp" %>

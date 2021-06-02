@@ -11,9 +11,9 @@ public class UsuarioAPI {
     PreparedStatement pst;
     ResultSet rs;    
 
-    UsuarioDTO us = new UsuarioDTO();
+    
     public UsuarioDTO validarUsurio(String usuario, String password){
-        
+        UsuarioDTO us = new UsuarioDTO();
         String sql = "SELECT * FROM usuarios WHERE Usuario=? and PasswordUser=?";
         
         try{
@@ -35,4 +35,6 @@ public class UsuarioAPI {
         }        
         return us;
     }
+    
+    
 }

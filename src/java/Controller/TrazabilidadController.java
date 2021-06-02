@@ -42,15 +42,16 @@ public class TrazabilidadController extends HttpServlet {
         
         if (menu.equalsIgnoreCase("principal")){
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
-        }
-        
-        else if (menu.equalsIgnoreCase("trazabilidad")){
+            
+        }else if (menu.equalsIgnoreCase("trazabilidad")){
             
             
             listaTzb=listaTzbAPI.listarTrazabildad();
             request.setAttribute("trazabilidad", listaTzb);
                         
             request.getRequestDispatcher("Trazabilidad.jsp").forward(request, response);
+        }else if(menu.equalsIgnoreCase("Enviar")){
+            
         }
     }
 

@@ -8,6 +8,7 @@
 
 <!DOCTYPE html>
 <html>
+  
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">              
@@ -34,15 +35,20 @@
                         <input type="submit" name="accion" class="btn btn-primary btn-b">
                     </form>
                     
-                    <%            
+                    <%          
+                         
                         if (request.getAttribute("v") != null){
+                           
                             if (request.getAttribute("v") == "1") {
+                                
+                                
                                 HttpSession ses = request.getSession();
                                 ses.setMaxInactiveInterval(60 * 60);
                                 ses.setAttribute("s1", request.getAttribute("usuario"));
                                 ses.setAttribute("nombreUsuario", request.getAttribute("nombre"));
                                 ses.setAttribute("primerApellido", request.getAttribute("apellido"));
                                 ses.setAttribute("EntityID", request.getAttribute("idUsuario"));
+                                
                                 response.sendRedirect("Principal.jsp");
                             } else {
                                 out.println("<br>Credenciales incorrectas");

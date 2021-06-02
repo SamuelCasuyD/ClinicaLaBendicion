@@ -58,7 +58,7 @@
                         <td>${soli.getDescripcion()}</td>
                         <td>${soli.getNombre()}</td>
                         
-
+                        
                     </tr>   
                 </c:forEach>                        
                 </tbody>

@@ -3,6 +3,9 @@
     Created on : 16/05/2021, 01:29:50 AM
     Author     : Alexander Elias
 --%>
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <%@include file="Header.jsp" %>
 <div class="container col-8 p-3">
@@ -14,6 +17,9 @@
                     display: none;
                 }
             </style>
+            
+            <input type='text' value="${N}">
+            
             <div class="container col-sm-12 p-3">
                 <div class="card col-sm-12">
                     <div class="card-body col-sm-12">

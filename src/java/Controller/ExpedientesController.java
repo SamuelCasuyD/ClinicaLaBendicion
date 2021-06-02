@@ -16,7 +16,6 @@ import Models.TipoSolicitanteDTO;
 import Models.TipoSolicitudDTO;
 import Models.TipoSoporteDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,8 +72,8 @@ public class ExpedientesController extends HttpServlet {
         
         else if (menu.equalsIgnoreCase("expedientes")){
         
-            
-             listaExpediente = expAPI.listarExpediente();
+            String numeroExpediente= request.getParameter("numExpediente");
+             listaExpediente = expAPI.listarExpediente(numeroExpediente);
              request.setAttribute("expedientes", listaExpediente);
 
              
@@ -129,6 +128,10 @@ public class ExpedientesController extends HttpServlet {
             String tipoSoporte = request.getParameter("Soporte");
             String numSoporte = request.getParameter("txtSoporte");
             int estado = 1;
+            
+            /*Datos para la trazabilidad*/
+            
+            
             
             
             SolMedic.setTipoSolicitante(parseInt(tipoSolicitante));

@@ -83,6 +83,8 @@ public class SolicitudesController extends HttpServlet {
          request.setAttribute("SoporteInt", ListaSoporteInterno);
          request.setAttribute("SoporteExt", ListaSoporteExterno);
          
+       
+         
          
          
         if (menu.equalsIgnoreCase("principal")){
@@ -90,6 +92,9 @@ public class SolicitudesController extends HttpServlet {
         }
         //--      
         else if (menu.equalsIgnoreCase("mantenimiento")){ 
+            
+              listS= findSolMedicByIdAPI.listarSolicitudes();
+         request.setAttribute("listSol",listS);
             
             request.getRequestDispatcher("SolicitudMedica.jsp").forward(request, response);
             

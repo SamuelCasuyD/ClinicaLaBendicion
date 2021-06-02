@@ -1,23 +1,22 @@
 <%-- 
-    Document   : AnalisisSolicitudes
-    Created on : 25/05/2021, 09:52:44 PM
+    Document   : ListadoSolicitudes
+    Created on : 29/05/2021, 09:41:23 AM
     Author     : Alexander Elias
 --%>
-
 <%@include file="Header.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!--*******************************************************************-->
 <div class="container-fluid mt-4"  id="tabla" >
     <div class="card">
-         <h4 class="card-header">Solicitudes Medicas</h4>   
+         <h4 class="card-header">Información General</h4>   
         <div class="card-body">
             <table id="example" class="table table-bordered table-striped small">
-                <thead style="font-size: 13px">
+                <thead style="font-size: 8px">
                 <th class="text-center">Código solicitud</th>
                 <th class="text-center">No. expediente</th>
-               
-               
-               
+                <th class="text-center">NIT</th>
+                <th class="text-center">No. soporte</th>
+                <th class="text-center">Tipo soporte</th>
                 <th class="text-center">Tipo solicitante</th>
 
                 <th class="text-center">Tipo solicitud</th>
@@ -31,21 +30,21 @@
                 <!-- <th class="text-center">Cantidad documentos</th>--> 
                 <th class="text-center">Descripción</th>
                 <th class="text-center">Solicitante</th>
-                <th class="text-center">Opciones</th>
-               
+                <th class="text-center">Teléfonos</th>
+                <th class="text-center">Emails</th>
                 </thead>
 
 
-                <tbody style="font-size: 13px">
+                <tbody style="font-size: 8px">
 
                     <c:forEach var="soli" items="${listSol}">
                     <input type="hidden" id="muestraTabla" value="${soli.getCodigoSolicitud()}">
                     <tr>
                         <td>${soli.getCodigoSolicitud()}</td>
                         <td>${soli.getNumExpediente()}</td>
-                      
-                        
-                      
+                        <td>${soli.getNit()}</td>
+                        <td>${soli.getNumSoporte()}</td>    
+                        <td>${soli.getNombreSoporte()}</td>
                         <td>${soli.getNombreTipoSolicitante()}</td>
                         <td>${soli.getNombreTipoSolicitud()}</td>
                         <td>${soli.getUsuarioAsignacion()}</td>  
@@ -57,14 +56,14 @@
                         <!--<td></td>-->
                         <td>${soli.getDescripcion()}</td>
                         <td>${soli.getNombre()}</td>
-                        
-                        
+                        <td>${soli.getTelefono()}</td>
+                        <td>${soli.getEmail()}</td>
+
                     </tr>   
                 </c:forEach>                        
                 </tbody>
             </table>  
         </div>  
     </div> 
-</div>
-<!--*******************************************************************-->
+</div>**************************************************************-->
 <%@include file="footer.jsp" %>

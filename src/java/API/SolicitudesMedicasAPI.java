@@ -186,6 +186,10 @@ public class SolicitudesMedicasAPI {
             r = ps.executeUpdate();
             
             
+            
+            
+            
+            
             /*sql="select codigoSolicitud from solicitudes_medicas order by idSolicitudes desc limit 1";
             rs=ps.executeQuery(sql);
             rs.next();

@@ -24,6 +24,7 @@
                     <th class="text-center">Numero de Expediente</th>
                     <th class="text-center">Origen</th>
                     <th class="text-center">Observaciones</th>
+                    <th class="text-center">Opciones</th>
                 </thead>
                 <tbody align="center">
                      
@@ -35,7 +36,18 @@
                         <td>${exp.getNoExpediente()}</td>
                         <td>${exp.getObservaciones()}</td>
                         <td>${exp.getOrigen()}</td>
-                       
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    opciones
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Informacion General</a>
+                                    <a class="dropdown-item" href="#">Expediente</a>
+                                    <a class="dropdown-item" href="#">Trazabilidad</a>
+                                </div>                                
+                            </div>                            
+                        </td>
                     </tr>
                     <% contador++;%>
                     </c:forEach>   

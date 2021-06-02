@@ -32,31 +32,33 @@ public class UsuarioController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
              throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        RequestDispatcher res;        
+       
+        RequestDispatcher res;
         UsuarioDTO user = new UsuarioDTO();
         UsuarioAPI Validar = new UsuarioAPI();
-         
-                    if (request.getParameter("accion")!=null) {
+
+        if (request.getParameter("accion") != null) {
+
+            String usuario = request.getParameter("txtuser");
+            String password = request.getParameter("txtpass");
+
+            user = Validar.validarUsurio(usuario, password);
+
+            if (user.getUsuario() != null) {
+                request.setAttribute("v", "1");
+                request.setAttribute("usuario", user.getUsuario());
+                request.setAttribute("nombre", user.getPrimerNombre());
+                request.setAttribute("apellido", user.getPrimerApellido());
+                request.setAttribute("idUsuario", user.getEntityID());
                 
-                    String usuario = request.getParameter("txtuser");
-                    String password = request.getParameter("txtpass");
-                    
-                    user = Validar.validarUsurio(usuario, password);
-                    
-                if (user.getUsuario()!=null) {
-                    request.setAttribute("v", "1");                    
-                    request.setAttribute("usuario", user.getUsuario());
-                    request.setAttribute("nombre", user.getPrimerNombre());
-                    request.setAttribute("apellido", user.getPrimerApellido());
-                    request.setAttribute("idUsuario", user.getEntityID());
-                }else{
-                    request.setAttribute("v","0");
-                }
-                
+                 
+            } else {
+                request.setAttribute("v", "0");
             }
-            res=request.getRequestDispatcher("index.jsp");
-            res.forward(request, response);
+
+        }
+        res = request.getRequestDispatcher("index.jsp");
+        res.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
