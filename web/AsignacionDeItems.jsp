@@ -5,6 +5,7 @@
 --%>
 
 <%@include file="Header.jsp" %>
+
 <div class="container mt-4">    
     <div class="card">
         <h6 class="card-header">Vincular Items</h6>
@@ -12,24 +13,34 @@
             
             <form action="MuestrasController" method="POST">
                 <div class="form-row">
-
-                    <div class="input-group col">
-                        <input class="form-control col"  type="text" name="solicitudM" aria-label="Recipient's username" aria-describedby="button-addon2" value="${soli.getCodigoSolicitud()}" placeholder="No. Solicitud Medica" />
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-primary" type="submit" name="menu" value="AsignarItems" id="button-addon2">
-                                    <i class="fa fa-search"></i> Buscar
-                                </button>
-                            </div>
+                                        <div class="input-group col">
+                        <input class="form-control col" type="text" name="NumSolicitud" id="NumSolicitud" aria-label="Recipient's username" aria-describedby="button-addon2" value="${BSoli.getCodigoSolicitud()}" placeholder="No. Solicitud Medica" />
+                        <div class="input-group-append">
+                            <a class="btn btn-outline-primary" href="MuestrasController?menu=BuscarSolMe&NumSolicitud=${BSoli.getCodigoSolicitud()}"  id="button-addon2">
+                                <i class="fa fa-search"></i> Buscar
+                            </a>
+                        </div>
                     </div> 
 
                     <div class="input-group col" >
-                        <input class="form-control col" type="text" name="muestraM" aria-label="Recipient's username" aria-describedby="button-addon2" value="${itemsList.getNumMuestra()}" placeholder="No. Muestra Medica" />
+                        <input class="form-control col" type="text" name="txtMuestra" id="txtMuestra" aria-label="Recipient's username" aria-describedby="button-addon2" value="${Mtra.getNumMuestra()}" placeholder="No. Muestra Medica" />
                         <div class="input-group-append">
-                            <button class="btn btn-outline-primary" type="submit" name="menu" value="AsignarItems" id="button-addon2">
+                            <a class="btn btn-outline-primary"  href="MuestrasController?menu=AsignarItems&txtMuestra=${Mtra.getNumMuestra()}"  id="button-addon2">
                                 <i class="fa fa-search"></i> Buscar
-                            </button>
+                            </a>
                         </div>
                     </div>  
+                </div>
+                        
+                <div class="col-12" style="padding-top: 10px; text-align: right">
+                    <div class="btn-group" role="group" aria-label="Basic example" style="text-align: center">
+                        <button type="submit" name="menu" value="NewMuestras" class="btn btn-outline-secondary btn-md" >
+                            <i class="fas fa-save fa-lg"> </i> Guardar
+                        </button>                           
+                        <a class="btn btn-outline-secondary btn-md" href="MuestrasController?menu=analisis">
+                            <i class="fas fa-window-close fa-lg"> </i> Cancelar
+                        </a>
+                    </div>
                 </div>
             
                 <hr>
@@ -67,6 +78,7 @@
                     </div>
                 </div>   
             </form>
+        
         </div>
     </div>
 </div>

@@ -50,7 +50,7 @@
                                     <a href="MuestrasController?menu=EliminarMuestra&id=${list.getIdMuestra()}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true" data-toggle="tooltip" title="Eliminar">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
-                                    <a href="MuestrasController?menu=AsignarItems&id=${list.getNumMuestra()}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true" data-toggle="tooltip" title="Agregar Items">
+                                    <a href="MuestrasController?menu=AsignarItems&txtMuestra=${list.getNumMuestra()}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true" data-toggle="tooltip" title="Agregar Items">
                                         <i class="fas fa-cubes"></i>
                                     </a>
                                     <a href="MuestrasController?menu=CardarDatos&id=${list.getIdMuestra()}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true" data-toggle="tooltip" title="Editar">

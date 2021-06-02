@@ -123,8 +123,8 @@ public class TipoMuestraAPI {
     
     public int CrearMuestra(TipoMuestraDTO pa) {
         String sql = "insert into muestra(IdTipoMuestra, Presentacion, "
-                + "CantidadUnidades, IdUnidadMedida, Adjunto, FechaCreacion,  Eliminado, idSolicitudes) "
-                + "values (?,?,?,?,?,?,?,?)";
+                + "CantidadUnidades, IdUnidadMedida, Adjunto, FechaCreacion,  Eliminado) "
+                + "values (?,?,?,?,?,?,?)";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -137,7 +137,7 @@ public class TipoMuestraAPI {
             ps.setString(5, pa.getAdjunto());
             ps.setDate(6, (Date) pa.getFechaCreacion());
             ps.setBoolean(7, eliminado);
-            ps.setInt(8, pa.getIdMuestra());
+            //ps.setInt(8, pa.getIdMuestra());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Código de Error: " + e.getErrorCode() + "\n"
@@ -319,7 +319,7 @@ public class TipoMuestraAPI {
         return idSoli;
     }
     
-    public TipoMuestraDTO BuscarItem(String codigoSolicitud){
+    public TipoMuestraDTO BuscarNoMuestra(String codigoSolicitud){
         TipoMuestraDTO idSoli = new TipoMuestraDTO();
         String sql="select* from muestra where NumMuestra  = ?";
         
