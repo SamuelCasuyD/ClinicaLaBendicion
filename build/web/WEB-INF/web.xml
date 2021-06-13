@@ -1,44 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>UsuarioController</servlet-name>
-        <servlet-class>Controller.UsuarioController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ExpedientesController</servlet-name>
-        <servlet-class>Controller.ExpedientesController</servlet-class>
+        <servlet-class>Controllers.ExpedientesController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>TrazabilidadController</servlet-name>
-        <servlet-class>Controller.TrazabilidadController</servlet-class>
+        <servlet-name>Fecha</servlet-name>
+        <servlet-class>Controllers.Fecha</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SolicitudesController</servlet-name>
+        <servlet-class>Controllers.SolicitudesController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AnalisisSolicitudesController</servlet-name>
-        <servlet-class>Controller.AnalisisSolicitudesController</servlet-class>
+        <servlet-class>Controllers.AnalisisSolicitudesController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>reportePDF</servlet-name>
-        <servlet-class>Reportes.Servlets.reportePDF</servlet-class>
+        <servlet-name>MuestrasController</servlet-name>
+        <servlet-class>Controllers.MuestrasController</servlet-class>
     </servlet>
-    <servlet-mapping>
+    <servlet>
+        <servlet-name>TrazabilidadController</servlet-name>
+        <servlet-class>Controllers.TrazabilidadController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>UsuarioController</servlet-name>
-        <url-pattern>/UsuarioController</url-pattern>
-    </servlet-mapping>
+        <servlet-class>Controllers.UsuarioController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ExpedientesController</servlet-name>
         <url-pattern>/ExpedientesController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>TrazabilidadController</servlet-name>
-        <url-pattern>/TrazabilidadController</url-pattern>
+        <servlet-name>Fecha</servlet-name>
+        <url-pattern>/Fecha</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SolicitudesController</servlet-name>
+        <url-pattern>/SolicitudesController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AnalisisSolicitudesController</servlet-name>
         <url-pattern>/AnalisisSolicitudesController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>reportePDF</servlet-name>
-        <url-pattern>/reportePDF</url-pattern>
+        <servlet-name>MuestrasController</servlet-name>
+        <url-pattern>/MuestrasController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TrazabilidadController</servlet-name>
+        <url-pattern>/TrazabilidadController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UsuarioController</servlet-name>
+        <url-pattern>/UsuarioController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

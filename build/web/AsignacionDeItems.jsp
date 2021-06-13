@@ -10,7 +10,7 @@
     <div class="card">
         <h6 class="card-header">Vincular Items</h6>
         <div class="card-body">
-            
+
             <form action="MuestrasController" method="POST">
                 <div class="form-row">
                     <div class="input-group col">
@@ -31,7 +31,7 @@
                         </div>
                     </div>  
                 </div>
-                        
+
                 <div class="col-12" style="padding-top: 10px; text-align: right">
                     <div class="btn-group" role="group" aria-label="Basic example" style="text-align: center">
                         <button type="submit" name="menu" value="NewMuestras" class="btn btn-outline-secondary btn-md" >
@@ -42,9 +42,9 @@
                         </a>
                     </div>
                 </div>
-            
+
                 <hr>
-            
+
                 <div class="row" >
                     <div class="col-12">
                         <table id="example" class="table table-bordered table-striped small">
@@ -57,30 +57,30 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <%! int contador = 1;
-                                
-                            %>
-                            <c:forEach var="list" items="${itemsList}">
-                                <tr> 
-                                    <td style="text-align: center"><%= contador%></td>
-                                    <td>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="tableDefaultCheck2">
-                                            <label class="custom-control-label" for="tableDefaultCheck2">Check</label>
-                                        </div>
-                                    </td>
-                                    <td>${list.getIdItems()}</td>
-                                    <td>${list.getNombreItems()}</td>
-                                </tr>
-                                <% contador++; %>   
-                            </c:forEach>
-                            <% contador = 1; %>
+                                <%! int contador = 1;
+
+                                %>
+                                <c:forEach var="list" items="${itemsList}">
+                                    <tr> 
+                                        <td style="text-align: center"><%= contador%></td>
+                                        <td>
+                                            <div class="form-check"> 
+                                                <input class="form-check-input" type="checkbox" value="${list.getIdItems()}" id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">Check</label>
+                                            </div>
+                                        </td>
+                                        <td>${list.getIdItems()}</td>
+                                        <td>${list.getNombreItems()}</td>
+                                    </tr>
+                                    <% contador++; %>   
+                                </c:forEach>
+                                <% contador = 1;%>
                             </tbody>
                         </table>     
                     </div>
                 </div>   
             </form>
-        
+
         </div>
     </div>
 </div>
