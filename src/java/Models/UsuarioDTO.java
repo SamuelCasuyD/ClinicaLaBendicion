@@ -19,12 +19,14 @@ public class UsuarioDTO {
     int TipoUsurio;
     String FechaCreacion;
     String FechaModificacion;
+    String rolUsuaario;
+    int cantidadSolicitudes;
     int Estado;
 
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(int EntityID, String PrimerNombre, String SegundoNombre, String OtroNombre, String PrimerApellido, String SegundoApellido, String Usuario, String PasswordUser, String FechaNacimiento, int Genero, String TelDomicilio, String TelMovil, String Correo, int TipoUsurio, String FechaCreacion, String FechaModificacion, int Estado) {
+    public UsuarioDTO(int EntityID, String PrimerNombre, String SegundoNombre, String OtroNombre, String PrimerApellido, String SegundoApellido, String Usuario, String PasswordUser, String FechaNacimiento, int Genero, String TelDomicilio, String TelMovil, String Correo, int TipoUsurio, String FechaCreacion, String FechaModificacion, String rolUsuaario, int cantidadSolicitudes, int Estado) {
         this.EntityID = EntityID;
         this.PrimerNombre = PrimerNombre;
         this.SegundoNombre = SegundoNombre;
@@ -41,8 +43,12 @@ public class UsuarioDTO {
         this.TipoUsurio = TipoUsurio;
         this.FechaCreacion = FechaCreacion;
         this.FechaModificacion = FechaModificacion;
+        this.rolUsuaario = rolUsuaario;
+        this.cantidadSolicitudes = cantidadSolicitudes;
         this.Estado = Estado;
     }
+
+    
 
     public int getEntityID() {
         return EntityID;
@@ -178,6 +184,23 @@ public class UsuarioDTO {
 
     public void setEstado(int Estado) {
         this.Estado = Estado;
-    }    
+    }   
+
+    public String getRolUsuaario() {
+        return rolUsuaario;
+    }
+
+    public void setRolUsuaario(String rolUsuaario) {
+        this.rolUsuaario = rolUsuaario;
+    }
+
+    public int getCantidadSolicitudes() {
+        return cantidadSolicitudes;
+    }
+
+    public void setCantidadSolicitudes(int cantidadSolicitudes) {
+        this.cantidadSolicitudes = cantidadSolicitudes;
+    }
+    
     
 }

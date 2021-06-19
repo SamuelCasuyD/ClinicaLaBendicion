@@ -51,6 +51,9 @@ public class UsuarioController extends HttpServlet {
                 request.setAttribute("apellido", user.getPrimerApellido());
                 request.setAttribute("idUsuario", user.getEntityID());
                 
+                //request.setAttribute("usuario", user);
+                //request.getRequestDispatcher("SolicitudeMedica.jsp").forward(request, response);
+                
                  
             } else {
                 request.setAttribute("v", "0");

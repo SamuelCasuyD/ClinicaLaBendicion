@@ -101,6 +101,7 @@ public class SolicitudesMedicasAPI {
 "	   E.nombreTipoSolicitante, \n" +
 "	   B.nombreTipoSolicitud, \n" +
 "	   A.UsuarioAsignacion, \n" +
+"           A.estado_solicitud,\n" +
 "	   C.nombreEstadoSolicitud, \n" +
 "	   A.UsuarioCreacion, \n" +
 "	   A.FechaCreacion, \n" +
@@ -133,14 +134,15 @@ public class SolicitudesMedicasAPI {
                sol.setNombreSoporte(rs.getString(5));   //  D.nombreSoporte, 
                sol.setNombreTipoSolicitante(rs.getString(6)); // E.nombreTipoSolicitante,
                sol.setNombreTipoSolicitud(rs.getString(7));      //B.nombreTipoSolicitud,
-               sol.setUsuarioAsignacion(rs.getInt(8)); // A.UsuarioAsignacion,               
-               sol.setNombreEstadoSolicitud(rs.getString(9)); //C.nombreEstadoSolicitud,               
-               sol.setUsuarioCreacion(rs.getInt(10));// A.UsuarioCreacion,               
-               sol.setFechaCreacion(rs.getString(11));                
-               sol.setDescripcion(rs.getString(12));               
-               sol.setNombre(rs.getString(13));               
-               sol.setTelefono(rs.getString(14));
-               sol.setEmail(rs.getString(15));
+               sol.setUsuarioAsignacion(rs.getInt(8)); // A.UsuarioAsignacion,    
+               sol.setEstadoSolicitud(rs.getInt(9));
+               sol.setNombreEstadoSolicitud(rs.getString(10)); //C.nombreEstadoSolicitud,               
+               sol.setUsuarioCreacion(rs.getInt(11));// A.UsuarioCreacion,               
+               sol.setFechaCreacion(rs.getString(12));                
+               sol.setDescripcion(rs.getString(13));               
+               sol.setNombre(rs.getString(14));               
+               sol.setTelefono(rs.getString(15));
+               sol.setEmail(rs.getString(16));
                
                
                SolMed.add(sol);

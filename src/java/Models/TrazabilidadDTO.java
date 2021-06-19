@@ -13,7 +13,7 @@ public class TrazabilidadDTO {
     int estadoSolicitud;
     String nombreEstado;
     String enviadoPor;
-    String asignadoA;
+    int asignadoA;
     String fecha;
     String duracion;
     String acumulado;
@@ -23,7 +23,7 @@ public class TrazabilidadDTO {
     public TrazabilidadDTO() {
     }
 
-    public TrazabilidadDTO(int idTrazabilidad, String codigoSolicitud, int estadoSolicitud, String nombreEstado, String enviadoPor, String asignadoA, String fecha, String duracion, String acumulado, String observaciones, String asignacion) {
+    public TrazabilidadDTO(int idTrazabilidad, String codigoSolicitud, int estadoSolicitud, String nombreEstado, String enviadoPor, int asignadoA, String fecha, String duracion, String acumulado, String observaciones, String asignacion) {
         this.idTrazabilidad = idTrazabilidad;
         this.codigoSolicitud = codigoSolicitud;
         this.estadoSolicitud = estadoSolicitud;
@@ -36,6 +36,8 @@ public class TrazabilidadDTO {
         this.observaciones = observaciones;
         this.asignacion = asignacion;
     }
+
+   
 
     public int getIdTrazabilidad() {
         return idTrazabilidad;
@@ -77,11 +79,11 @@ public class TrazabilidadDTO {
         this.enviadoPor = enviadoPor;
     }
 
-    public String getAsignadoA() {
+    public int getAsignadoA() {
         return asignadoA;
     }
 
-    public void setAsignadoA(String asignadoA) {
+    public void setAsignadoA(int asignadoA) {
         this.asignadoA = asignadoA;
     }
 

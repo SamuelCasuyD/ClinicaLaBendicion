@@ -63,6 +63,9 @@
                     <button style="border: none;" class="btn btn-outline-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <% out.println(ses.getAttribute("nombreUsuario"));
                         out.println(ses.getAttribute("primerApellido"));%>
+                        
+                        
+                        
                     </button>
                     <div class="dropdown-menu text-center">
                         <a class="dropdown-item" href="#">

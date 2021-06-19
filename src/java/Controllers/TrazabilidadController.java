@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Controllers;
 
 import API.TrazabilidadAPI;
 import Models.TrazabilidadDTO;
@@ -47,10 +47,12 @@ public class TrazabilidadController extends HttpServlet {
             
             
             listaTzb=listaTzbAPI.listarTrazabildad();
-            request.setAttribute("trazabilidad", listaTzb);
-                        
+            request.setAttribute("trazabilidad", listaTzb);                        
             request.getRequestDispatcher("Trazabilidad.jsp").forward(request, response);
+            
         }else if(menu.equalsIgnoreCase("Enviar")){
+            
+            String codSolicitud= request.getParameter("codSolicitud");
             
         }
     }

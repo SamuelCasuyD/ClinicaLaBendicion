@@ -28,6 +28,10 @@
         <servlet-name>UsuarioController</servlet-name>
         <servlet-class>Controllers.UsuarioController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AsignarSolicitudesController</servlet-name>
+        <servlet-class>Controllers.AsignarSolicitudesController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ExpedientesController</servlet-name>
         <url-pattern>/ExpedientesController</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/UsuarioController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AsignarSolicitudesController</servlet-name>
+        <url-pattern>/AsignarSolicitudesController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
