@@ -49,8 +49,14 @@
                                 ses.setAttribute("nombreUsuario", request.getAttribute("nombre"));
                                 ses.setAttribute("primerApellido", request.getAttribute("apellido"));
                                 ses.setAttribute("EntityID", request.getAttribute("idUsuario"));
+                                ses.setAttribute("rol",request.getAttribute("rolUsuario"));
+                                ses.setAttribute("solicitudes", request.getAttribute("cantidadSolicitudes"));
                                 
-                                response.sendRedirect("Principal.jsp");
+                                
+                             
+                              
+                                
+                                response.sendRedirect("MenuBienvenida.jsp");
                             } else {
                                 out.println("<br>Credenciales incorrectas");
                             }

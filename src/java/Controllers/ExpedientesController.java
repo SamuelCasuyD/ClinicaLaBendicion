@@ -112,6 +112,8 @@ public class ExpedientesController extends HttpServlet {
            
            
         }else if(menu.equalsIgnoreCase("Siguiente")){
+            
+            int idUsuario = (int) request.getSession().getAttribute("idUsuario");
             String tipoSolicitante = request.getParameter("slcTpolicitante");
             String tipoSolicitud = request.getParameter("slcTpolicitud");
             String Descripcion = request.getParameter("Descripcion");
@@ -124,7 +126,7 @@ public class ExpedientesController extends HttpServlet {
             String numTel = request.getParameter("txtNoTel");
             String email = request.getParameter("txtGmail");
             String fechaCreacion = Fecha.FechaDB();
-            int usuarioCreacion = 2;    
+            int usuarioCreacion = idUsuario;    
             String tipoSoporte = request.getParameter("Soporte");
             String numSoporte = request.getParameter("txtSoporte");
             int estado = 1;

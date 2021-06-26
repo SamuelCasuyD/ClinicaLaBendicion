@@ -5,10 +5,12 @@
  */
 package Controllers;
 
+import API.EstadosSolicitudesAPI;
 import API.TrazabilidadAPI;
+import Models.EstadosSolicitudesDTO;
+import Models.SolicitudesMedicasDTO;
 import Models.TrazabilidadDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -21,9 +23,14 @@ import javax.servlet.http.HttpServletResponse;
  * @author Alexander Elias
  */
 public class TrazabilidadController extends HttpServlet {
-    
-     TrazabilidadAPI listaTzbAPI = new TrazabilidadAPI();
-    List<TrazabilidadDTO> listaTzb = new ArrayList<>();
+
+    TrazabilidadAPI listaTzbAPI = new TrazabilidadAPI();
+    List<SolicitudesMedicasDTO> listaTzb = new ArrayList<>();
+
+    List<EstadosSolicitudesDTO> estadosList = new ArrayList<>();
+    EstadosSolicitudesAPI solicitudesAPI = new EstadosSolicitudesAPI();
+
+    TrazabilidadDTO estado = new TrazabilidadDTO();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,23 +44,42 @@ public class TrazabilidadController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         String menu = request.getParameter("menu");
-        
+
         if (menu.equalsIgnoreCase("principal")){
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
-            
-        }else if (menu.equalsIgnoreCase("trazabilidad")){
-            
-            
-            listaTzb=listaTzbAPI.listarTrazabildad();
-            request.setAttribute("trazabilidad", listaTzb);                        
-            request.getRequestDispatcher("Trazabilidad.jsp").forward(request, response);
-            
-        }else if(menu.equalsIgnoreCase("Enviar")){
-            
-            String codSolicitud= request.getParameter("codSolicitud");
-            
+
+        }else if (menu.equalsIgnoreCase("Enviar")) {
+
+            String codSolicitud = request.getParameter("codSolicitud");
+
+        } else if (menu.equalsIgnoreCase("listarSolicitudesAsignadas")) {
+
+            int idUsuario = (int) request.getSession().getAttribute("idUsuario");
+
+            listaTzb = listaTzbAPI.listarSolicitudesID(idUsuario);
+
+            estadosList = solicitudesAPI.listarEstadosSolicitudesCentralizador();
+
+            request.setAttribute("estados", estadosList);
+            request.setAttribute("trazabilidad", listaTzb);
+
+            request.getRequestDispatcher("SolicitudesAsignadas.jsp").forward(request, response);
+        }
+        
+        else if (menu.equalsIgnoreCase("listarSolicitudesAsignadasAnalista")) {
+
+            int idUsuario = (int) request.getSession().getAttribute("idUsuario");
+
+            listaTzb = listaTzbAPI.listarSolicitudesID(idUsuario);
+
+            estadosList = solicitudesAPI.listarEstadosSolicitudesRevisior();
+
+            request.setAttribute("estados", estadosList);
+            request.setAttribute("trazabilidad", listaTzb);
+
+            request.getRequestDispatcher("SolicitudesAsignadasAnalista.jsp").forward(request, response);
         }
     }
 

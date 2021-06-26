@@ -19,16 +19,41 @@ public class AsignarSolicitudesAPI {
     ResultSet rs;
     int r;
 
-    public int asignarSolicitud(SolicitudesMedicasDTO solM) {
-        String sql = "update solicitudes_medicas set UsuarioAsignacion = ?, estado_solicitud = ? where codigoSolicitud = ?";
+    public int ActualizaasignarSolicitud(SolicitudesMedicasDTO solM) {
+        String sql = "UPDATE solicitudes_medicas SET FechaModificacion=?, UsuarioModificacion= ?, UsuarioAsignacion=?, estado_solicitud = ? WHERE codigoSolicitud = ?";
 
         try {
             conn = cn.getConnection();
             pst = conn.prepareStatement(sql);
 
-            pst.setInt(1, solM.getUsuarioAsignacion());
-            pst.setInt(2, solM.getEstadoSolicitud());
-            pst.setString(3, solM.getCodigoSolicitud());
+            pst.setString(1, solM.getFechaModificaion());
+            pst.setInt(2, solM.getUsuraioModificacion());
+            pst.setInt(3, solM.getUsuarioAsignacion());
+            pst.setInt(4, solM.getEstadoSolicitud());
+            pst.setString(5, solM.getCodigoSolicitud());
+
+            r = pst.executeUpdate();
+
+        } catch (SQLException e) {
+
+        }
+
+        return r;
+    }
+    
+    
+    public int asignarSolicitud2(SolicitudesMedicasDTO solM) {
+        String sql = "UPDATE solicitudes_medicas SET FechaModificacion=?, UsuarioModificacion= ?, UsuarioAsignacion=?, estado_solicitud = ? WHERE idSolicitudes = ?";
+
+        try {
+            conn = cn.getConnection();
+            pst = conn.prepareStatement(sql);
+            
+            pst.setString(1, solM.getFechaModificaion());
+            pst.setInt(2, solM.getUsuraioModificacion());
+            pst.setInt(3, solM.getUsuarioAsignacion());
+            pst.setInt(4, solM.getEstadoSolicitud());
+            pst.setInt(5, solM.getIdSolicitud());
 
             r = pst.executeUpdate();
 

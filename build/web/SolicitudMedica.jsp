@@ -32,9 +32,9 @@
         <h4 class="card-header">Lista de Solicitudes</h4>    
         <%
             ses.setAttribute("nobmre", ses.getAttribute("nombreUsuario"));
-            ses.setAttribute("apellido",ses.getAttribute("primerApellido"));
-            ses.setAttribute("idUsuario",ses.getAttribute("EntityID"));
-            
+            ses.setAttribute("apellido", ses.getAttribute("primerApellido"));
+            ses.setAttribute("idUsuario", ses.getAttribute("EntityID"));
+
 
         %>      
         <div class="card-body">
@@ -82,9 +82,9 @@
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <button class="dropdown-item" type="button">Asociar</button>
                                     <button class="dropdown-item" type="button">Desasociar</button>
-                                    <a href="AsignarSolicitudesController?menu=Asignar&codSolicitud=${soli.getCodigoSolicitud()}&estadoSolicitud=${soli.getEstadoSolicitud()}" class="dropdown-item" role="button" aria-pressed="true">Enviar</a>    
-                                    <a href="AsignarSolicitudesController?menu=trazabilidad" class="dropdown-item" role="button" aria-pressed="true">Trazabilidad</a>
-                                    <button class="dropdown-item" type="button">Eliminar</button>
+                                    <a href="AsignarSolicitudesController?menu=Enviar&codSolicitud=${soli.getCodigoSolicitud()}&estadoSolicitud=${soli.getEstadoSolicitud()}" class="dropdown-item" role="button" aria-pressed="true">Enviar</a>    
+                                    <a href="AsignarSolicitudesController?menu=trazabilidad&codSolicitud='${soli.getCodigoSolicitud()}'" class="dropdown-item" role="button" aria-pressed="true">Trazabilidad</a>
+                                    <a href="SolicitudesController?menu=Elininado&idSolicitud=${soli.getIdSolicitud()}" class="dropdown-item" role="button" aria-pressed="true">Eliminar</a> 
                                     <a href="ExpedientesController?menu=expedientes&numExpediente='${soli.getNumExpediente()}'" class="dropdown-item" role="button" aria-pressed="true">Expediente</a> 
                                     <a href="SolicitudesController?menu=informacionGeneral" class="dropdown-item" role="button" aria-pressed="true">Informacion General</a> 
                                 </div>

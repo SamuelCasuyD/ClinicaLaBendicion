@@ -32,6 +32,10 @@
         <servlet-name>AsignarSolicitudesController</servlet-name>
         <servlet-class>Controllers.AsignarSolicitudesController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AsignarItems</servlet-name>
+        <servlet-class>Controllers.AsignarItemsController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ExpedientesController</servlet-name>
         <url-pattern>/ExpedientesController</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>AsignarSolicitudesController</servlet-name>
         <url-pattern>/AsignarSolicitudesController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AsignarItems</servlet-name>
+        <url-pattern>/AsignarItems</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

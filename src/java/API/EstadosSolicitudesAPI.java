@@ -48,4 +48,52 @@ public class EstadosSolicitudesAPI {
         
     }
     
+    public List<EstadosSolicitudesDTO> listarEstadosSolicitudesCentralizador(){
+        List<EstadosSolicitudesDTO>estado = new ArrayList();
+        String sql="select * from estados_solicitudes WHERE idEstadoSolicitud = 3 and idEstadoSolicitud < 8";
+        
+        try{
+            con=cn.getConnection();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            
+            while(rs.next()){
+                EstadosSolicitudesDTO estSol = new EstadosSolicitudesDTO();
+                estSol.setIdEstado(rs.getInt(1));
+                estSol.setNombreEstado(rs.getString(2));
+                            
+                estado.add(estSol);
+            }
+        } catch(Exception e){
+            
+        }
+        
+        return estado;
+        
+    }
+    
+    public List<EstadosSolicitudesDTO> listarEstadosSolicitudesRevisior(){
+        List<EstadosSolicitudesDTO>estado = new ArrayList();
+        String sql="select * from estados_solicitudes WHERE idEstadoSolicitud > 3 and idEstadoSolicitud < 8 or idEstadoSolicitud = 9";
+        
+        try{
+            con=cn.getConnection();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            
+            while(rs.next()){
+                EstadosSolicitudesDTO estSol = new EstadosSolicitudesDTO();
+                estSol.setIdEstado(rs.getInt(1));
+                estSol.setNombreEstado(rs.getString(2));
+                            
+                estado.add(estSol);
+            }
+        } catch(Exception e){
+            
+        }
+        
+        return estado;
+        
+    }
+    
 }

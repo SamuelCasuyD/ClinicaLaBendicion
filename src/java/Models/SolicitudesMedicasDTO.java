@@ -35,11 +35,13 @@ public class SolicitudesMedicasDTO {
     int cantidadItems;
     int cantidadDocs;
     int diasVencimiento;
+    
+    String observaciones;
 
     public SolicitudesMedicasDTO() {
     }
 
-    public SolicitudesMedicasDTO(int idSolicitud, String codigoSolicitud, int tipoSolicitante, String nombreTipoSolicitante, int tipoSolicitud, String nombreTipoSolicitud, String Descripcion, String numExpediente, String nit, String nombre, String telefono, String email, String fechaCreacion, String fechaModificaion, int usuarioCreacion, int usuraioModificacion, int usuarioAsignacion, int tipoSoporte, String numSoporte, String nombreSoporte, int estadoSolicitud, String nombreEstadoSolicitud, int cantidadMuestras, int cantidadItems, int cantidadDocs, int diasVencimiento) {
+    public SolicitudesMedicasDTO(int idSolicitud, String codigoSolicitud, int tipoSolicitante, String nombreTipoSolicitante, int tipoSolicitud, String nombreTipoSolicitud, String Descripcion, String numExpediente, String nit, String nombre, String telefono, String email, String fechaCreacion, String fechaModificaion, int usuarioCreacion, int usuraioModificacion, int usuarioAsignacion, int tipoSoporte, String numSoporte, String nombreSoporte, int estadoSolicitud, String nombreEstadoSolicitud, int cantidadMuestras, int cantidadItems, int cantidadDocs, int diasVencimiento, String observaciones) {
         this.idSolicitud = idSolicitud;
         this.codigoSolicitud = codigoSolicitud;
         this.tipoSolicitante = tipoSolicitante;
@@ -66,7 +68,10 @@ public class SolicitudesMedicasDTO {
         this.cantidadItems = cantidadItems;
         this.cantidadDocs = cantidadDocs;
         this.diasVencimiento = diasVencimiento;
+        this.observaciones = observaciones;
     }
+
+    
 
     public int getIdSolicitud() {
         return idSolicitud;
@@ -275,6 +280,15 @@ public class SolicitudesMedicasDTO {
     public void setDiasVencimiento(int diasVencimiento) {
         this.diasVencimiento = diasVencimiento;
     }   
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+    
     
     
 }

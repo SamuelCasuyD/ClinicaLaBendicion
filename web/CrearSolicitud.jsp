@@ -17,9 +17,14 @@
                     display: none;
                 }
             </style>
-            
-            <input type='text' value="${N}">
-            
+            <%
+                ses.setAttribute("nobmre", ses.getAttribute("nombreUsuario"));
+                ses.setAttribute("apellido", ses.getAttribute("primerApellido"));
+                ses.setAttribute("idUsuario", ses.getAttribute("EntityID"));
+
+
+            %> 
+
             <div class="container col-sm-12 p-3">
                 <div class="card col-sm-12">
                     <div class="card-body col-sm-12">
@@ -29,9 +34,6 @@
                         </div>
 
                         <form id="regiration_form"  action="ExpedientesController"  method="POST">
-
-
-
                             <!--**********************************************************************************************************-->
                             <fieldset>
                                 <h3>Paso 1: Crear solicitud médica</h3>
@@ -169,96 +171,96 @@
 
 
 
-    <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">         
+<div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">         
 
-                    <div class="alert alert-success"><h3 align="center">Se creó con exito la solicitud médica</h3></div>
-                </div>
-                <div class="modal-body">
-                    <h2 align="center">Su número de solicitud es:</h2>  
-                    <h1 align="center"><b>${exp.getCodigoSolicitud()}</b></h1>
-                </div>
-                <div class="modal-footer">
+                <div class="alert alert-success"><h3 align="center">Se creó con exito la solicitud médica</h3></div>
+            </div>
+            <div class="modal-body">
+                <h2 align="center">Su número de solicitud es:</h2>  
+                <h1 align="center"><b>${exp.getCodigoSolicitud()}</b></h1>
+            </div>
+            <div class="modal-footer">
 
-                    <a href="Controlador?menu=mantenimiento" data-dismiss="modal" class="btn btn-success">Aceptarr</a>
-                </div>
+                <a href="Controlador?menu=mantenimiento" data-dismiss="modal" class="btn btn-success">Aceptarr</a>
             </div>
         </div>
     </div>
+</div>
 
-        <!--***********************************Finaliza Modal para ingreso de datos******************************************-->
+<!--***********************************Finaliza Modal para ingreso de datos******************************************-->
 
-        <script>
-
-
-            if ($('#activModal').val().length > 0) {
-
-                $(document).ready(function ()
-                {
-                    $("#mostrarmodal").modal("show");
-                });
-
-            }
+<script>
 
 
+    if ($('#activModal').val().length > 0) {
 
+        $(document).ready(function ()
+        {
+            $("#mostrarmodal").modal("show");
+        });
 
-            $(document).ready(function () {
-
-                var current = 1, current_step, next_step, steps;
-                steps = $("fieldset").length;
-                $(".next").click(function () {
-                    current_step = $(this).parent();
-                    next_step = $(this).parent().next();
-                    next_step.show();
-                    current_step.hide();
-                    setProgressBar(++current);
-                });
-
-                $(".previous").click(function () {
-                    current_step = $(this).parent();
-                    next_step = $(this).parent().prev();
-                    next_step.show();
-                    current_step.hide();
-                    setProgressBar(--current);
-                });
-
-                setProgressBar(current);
-                // Change progress bar action
-                function setProgressBar(curStep) {
-                    var percent = parseFloat(100 / steps) * curStep;
-                    percent = percent.toFixed();
-                    $(".progress-bar")
-                            .css("width", percent + "%")
-                            .html(percent + "%");
-                }
-            });
-
-            function mascara(valor) {
-
-                if (valor.match(/^\d{4}$/) !== null) {
-
-                    return valor + '-';
-
-                } else if (valor.match(/^\d{4}\-\d{2}$/) !== null) {
-
-                    return valor + '-';
-
-                } else if (valor.match(/^\d{4}\-\d{2}\-\d{2}$/) !== null) {
-
-                    return valor + '-';
-
-                } else if (valor.match(/^\d{4}\-\d{2}\-\d{2}\-\d{2}$/) !== null) {
-
-                    return valor + '-';
-
-                }
-                return cadena;
-            }
+    }
 
 
 
-        </script>
-        <%@include file="footer.jsp" %>
+
+    $(document).ready(function () {
+
+        var current = 1, current_step, next_step, steps;
+        steps = $("fieldset").length;
+        $(".next").click(function () {
+            current_step = $(this).parent();
+            next_step = $(this).parent().next();
+            next_step.show();
+            current_step.hide();
+            setProgressBar(++current);
+        });
+
+        $(".previous").click(function () {
+            current_step = $(this).parent();
+            next_step = $(this).parent().prev();
+            next_step.show();
+            current_step.hide();
+            setProgressBar(--current);
+        });
+
+        setProgressBar(current);
+        // Change progress bar action
+        function setProgressBar(curStep) {
+            var percent = parseFloat(100 / steps) * curStep;
+            percent = percent.toFixed();
+            $(".progress-bar")
+                    .css("width", percent + "%")
+                    .html(percent + "%");
+        }
+    });
+
+    function mascara(valor) {
+
+        if (valor.match(/^\d{4}$/) !== null) {
+
+            return valor + '-';
+
+        } else if (valor.match(/^\d{4}\-\d{2}$/) !== null) {
+
+            return valor + '-';
+
+        } else if (valor.match(/^\d{4}\-\d{2}\-\d{2}$/) !== null) {
+
+            return valor + '-';
+
+        } else if (valor.match(/^\d{4}\-\d{2}\-\d{2}\-\d{2}$/) !== null) {
+
+            return valor + '-';
+
+        }
+        return cadena;
+    }
+
+
+
+</script>
+<%@include file="footer.jsp" %>

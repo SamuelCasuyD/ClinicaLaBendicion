@@ -16,6 +16,7 @@ import Models.TipoSolicitanteDTO;
 import Models.TipoSolicitudDTO;
 import Models.TipoSoporteDTO;
 import java.io.IOException;
+import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -30,26 +31,25 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "SolicitudesController", urlPatterns = {"/SolicitudesController"})
 public class SolicitudesController extends HttpServlet {
-    
+
     SolicitudesMedicasDTO findSolMedicById = new SolicitudesMedicasDTO();
     SolicitudesMedicasAPI findSolMedicByIdAPI = new SolicitudesMedicasAPI();
-    List<SolicitudesMedicasDTO> listS = new ArrayList<>(); 
-    
-    
-    TipoSolicitanteAPI TsolicitanteAPI=new TipoSolicitanteAPI();
+    List<SolicitudesMedicasDTO> listS = new ArrayList<>();
+
+    TipoSolicitanteAPI TsolicitanteAPI = new TipoSolicitanteAPI();
     List<TipoSolicitanteDTO> TsolicitanteDTO = new ArrayList<>();
-    
+
     TipoSoporteDTO sPExterno = new TipoSoporteDTO();
     TipoSoporteAPI spEDAO = new TipoSoporteAPI();
-    List<TipoSoporteDTO> ListaSoporteInterno = new ArrayList<>();    
+    List<TipoSoporteDTO> ListaSoporteInterno = new ArrayList<>();
     List<TipoSoporteDTO> ListaSoporteExterno = new ArrayList<>();
-    
+
     TipoSolicitudAPI TSd_dao = new TipoSolicitudAPI();
     List<TipoSolicitudDTO> Tsolicitud = new ArrayList<>();
-     
-     
+
     EstadosSolicitudesAPI estSoliDAO = new EstadosSolicitudesAPI();
     List<EstadosSolicitudesDTO> ListarEstados = new ArrayList<>();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -60,115 +60,128 @@ public class SolicitudesController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-        
+            throws ServletException, IOException {
+
         response.setContentType("text/html;charset=UTF-8");
-        String menu = request.getParameter("menu");        
-        
-       
+        String menu = request.getParameter("menu");
+
         Tsolicitud = TSd_dao.listarTsolicitud();
         request.setAttribute("TipoSolicitud", Tsolicitud);
 
-       
         ListarEstados = estSoliDAO.listarEstadosSolicitudes();
         request.setAttribute("estados", ListarEstados);
-        
-        
+
         TsolicitanteDTO = TsolicitanteAPI.listar();
-        
+
         request.setAttribute("tipoSolicitante", TsolicitanteDTO);
-        
-         ListaSoporteInterno = spEDAO.listarSoporteInterno();
-         ListaSoporteExterno = spEDAO.listarSoporteExterno();
-         request.setAttribute("SoporteInt", ListaSoporteInterno);
-         request.setAttribute("SoporteExt", ListaSoporteExterno);
-         
-       
-         
-         
-         
-        if (menu.equalsIgnoreCase("principal")){
+
+        ListaSoporteInterno = spEDAO.listarSoporteInterno();
+        ListaSoporteExterno = spEDAO.listarSoporteExterno();
+        request.setAttribute("SoporteInt", ListaSoporteInterno);
+        request.setAttribute("SoporteExt", ListaSoporteExterno);
+
+        if (menu.equalsIgnoreCase("principal")) {
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
-        }
-        //--      
-        else if (menu.equalsIgnoreCase("mantenimiento")){ 
-            
-              listS= findSolMedicByIdAPI.listarSolicitudes();
-         request.setAttribute("listSol",listS);
-            
+        } //--      
+        else if (menu.equalsIgnoreCase("mantenimiento")) {
+
+            listS = findSolMedicByIdAPI.listarSolicitudes();
+            request.setAttribute("listSol", listS);
+
             request.getRequestDispatcher("SolicitudMedica.jsp").forward(request, response);
-            
-        }
-        //--
-        else if(menu.equalsIgnoreCase("crearSolicitud")){
-            
+
+        } //--
+        else if (menu.equalsIgnoreCase("crearSolicitud")) {
+
             request.getRequestDispatcher("CrearSolicitud.jsp").forward(request, response);
-            
-        }
-        //--
-        else if(menu.equalsIgnoreCase("consultaSolicitudes")){
-            
-            request.getRequestDispatcher("ConsultaSolicitudes.jsp").forward(request, response);            
-        }
-        //--
-        else if(menu.equalsIgnoreCase("Buscar")){
-         
-            String codigoSolicitud = request.getParameter("txtSolicitud");  
+
+        } //--
+        else if (menu.equalsIgnoreCase("consultaSolicitudes")) {
+
+            request.getRequestDispatcher("ConsultaSolicitudes.jsp").forward(request, response);
+        } //--
+        else if (menu.equalsIgnoreCase("Buscar")) {
+
+            String codigoSolicitud = request.getParameter("txtSolicitud");
             String numExpediente = request.getParameter("txtExpediente");
             String numSoporte = request.getParameter("txtNoSoporte");
             String tipoSolicitud = request.getParameter("slcTpolicitud");
             String nit = request.getParameter("txtNit");
             String estado = request.getParameter("slcEstado");
             String fechaInicio = request.getParameter("fechaInicio");
-            String fechaFin = request.getParameter("fechaFin");    
-            
-            if(codigoSolicitud.isEmpty())
+            String fechaFin = request.getParameter("fechaFin");
+
+            if (codigoSolicitud.isEmpty()) {
                 codigoSolicitud = null;
-            if(numExpediente.isEmpty())
-                numExpediente=null;           
-            if(numSoporte.isEmpty())
-                numSoporte=null;  
-            if(tipoSolicitud ==null)
-              tipoSolicitud=null;
-            if(nit.isEmpty())
-               nit=null; 
-            if(estado==null)
-               estado=null;
-            if(fechaInicio.isEmpty())
-               fechaInicio=null;
-            if(fechaFin.isEmpty())
-               fechaFin=null;           
-            if (codigoSolicitud==null &&numExpediente==null && 
-                numSoporte ==null && tipoSolicitud==null &&  nit==null && estado==null                    
-                && (fechaInicio==null || fechaFin ==null)) {
-                
-                request.setAttribute("error", "<div class='alert alert-danger' role='alert'>Seleccione un rango de fechas</div>");            
+            }
+            if (numExpediente.isEmpty()) {
+                numExpediente = null;
+            }
+            if (numSoporte.isEmpty()) {
+                numSoporte = null;
+            }
+            if (tipoSolicitud == null) {
+                tipoSolicitud = null;
+            }
+            if (nit.isEmpty()) {
+                nit = null;
+            }
+            if (estado == null) {
+                estado = null;
+            }
+            if (fechaInicio.isEmpty()) {
+                fechaInicio = null;
+            }
+            if (fechaFin.isEmpty()) {
+                fechaFin = null;
+            }
+            if (codigoSolicitud == null && numExpediente == null
+                    && numSoporte == null && tipoSolicitud == null && nit == null && estado == null
+                    && (fechaInicio == null || fechaFin == null)) {
+
+                request.setAttribute("error", "<div class='alert alert-danger' role='alert'>Seleccione un rango de fechas</div>");
                 request.getRequestDispatcher("ConsultaSolicitudes.jsp").forward(request, response);
-                
-            }else{
-               
-                listS = findSolMedicByIdAPI.buscarSolicitudesMedicas(codigoSolicitud, numExpediente, numSoporte, tipoSolicitud, nit, estado, fechaInicio, fechaFin);              
-                
-                if  (listS.size()==0){
+
+            } else {
+
+                listS = findSolMedicByIdAPI.buscarSolicitudesMedicas(codigoSolicitud, numExpediente, numSoporte, tipoSolicitud, nit, estado, fechaInicio, fechaFin);
+
+                if (listS.size() == 0) {
                     request.setAttribute("msj", "<div class='alert alert-warning alert-dismissible fade show' role='alert'>"
                             + "No hay datos asiciados al filtro de búsqueda, verifique que los datos ingresados sean correctos"
                             + "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>"
                             + "<span aria-hidden='true'>&times;</span> </button></div>");
-                    
+
                     request.getRequestDispatcher("ConsultaSolicitudes.jsp").forward(request, response);
-                }else{
-                     request.setAttribute("Solicitudes", listS);
+                } else {
+                    request.setAttribute("Solicitudes", listS);
                     request.getRequestDispatcher("ConsultaSolicitudes.jsp").forward(request, response);
                 }
             }
-        }
-        //--
-        else if(menu.equalsIgnoreCase("informacionGeneral")){
-            
-            listS= findSolMedicByIdAPI.listarSolicitudes();
-            request.setAttribute("listSol",listS);
+        } //--
+        else if (menu.equalsIgnoreCase("informacionGeneral")) {
+
+            listS = findSolMedicByIdAPI.listarSolicitudes();
+            request.setAttribute("listSol", listS);
             request.getRequestDispatcher("SolicitudesController?menu=mantenimiento").forward(request, response);
-        } else{
+        } else if (menu.equalsIgnoreCase("Elininado")) {
+
+            String idSolicitud = request.getParameter("idSolicitud");
+
+            int idSol = parseInt(idSolicitud);
+            int idEstado = 10;
+
+            findSolMedicById.setIdSolicitud(idSol);
+            findSolMedicById.setEstadoSolicitud(idEstado);
+            
+            findSolMedicByIdAPI.EliminarSolicitud(findSolMedicById);
+            
+           
+
+            request.setAttribute("mensaje", "La solicitud fue eliminada con exito");
+            request.getRequestDispatcher("SolicitudesController?menu=mantenimiento").forward(request, response);
+
+        } else {
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
         }
     }
@@ -184,7 +197,7 @@ public class SolicitudesController extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-             throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -198,7 +211,7 @@ public class SolicitudesController extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-             throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 

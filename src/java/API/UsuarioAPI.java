@@ -29,6 +29,8 @@ public class UsuarioAPI {
                 us.setPrimerNombre(rs.getString("PrimerNombre"));
                 us.setPrimerApellido(rs.getString("PrimerApellido"));
                 us.setUsuario(rs.getString("Usuario"));
+                us.setIdRol(rs.getInt("rolUsuario"));
+                us.setCantidadSolicitudes(rs.getInt("solicitudesAsignadas"));
             }
             
         }catch(Exception e){            

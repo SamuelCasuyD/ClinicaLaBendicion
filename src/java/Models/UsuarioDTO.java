@@ -20,13 +20,15 @@ public class UsuarioDTO {
     String FechaCreacion;
     String FechaModificacion;
     String rolUsuaario;
+    
+    int idRol;
     int cantidadSolicitudes;
     int Estado;
 
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(int EntityID, String PrimerNombre, String SegundoNombre, String OtroNombre, String PrimerApellido, String SegundoApellido, String Usuario, String PasswordUser, String FechaNacimiento, int Genero, String TelDomicilio, String TelMovil, String Correo, int TipoUsurio, String FechaCreacion, String FechaModificacion, String rolUsuaario, int cantidadSolicitudes, int Estado) {
+    public UsuarioDTO(int EntityID, String PrimerNombre, String SegundoNombre, String OtroNombre, String PrimerApellido, String SegundoApellido, String Usuario, String PasswordUser, String FechaNacimiento, int Genero, String TelDomicilio, String TelMovil, String Correo, int TipoUsurio, String FechaCreacion, String FechaModificacion, String rolUsuaario, int idRol, int cantidadSolicitudes, int Estado) {
         this.EntityID = EntityID;
         this.PrimerNombre = PrimerNombre;
         this.SegundoNombre = SegundoNombre;
@@ -44,11 +46,10 @@ public class UsuarioDTO {
         this.FechaCreacion = FechaCreacion;
         this.FechaModificacion = FechaModificacion;
         this.rolUsuaario = rolUsuaario;
+        this.idRol = idRol;
         this.cantidadSolicitudes = cantidadSolicitudes;
         this.Estado = Estado;
     }
-
-    
 
     public int getEntityID() {
         return EntityID;
@@ -178,20 +179,20 @@ public class UsuarioDTO {
         this.FechaModificacion = FechaModificacion;
     }
 
-    public int getEstado() {
-        return Estado;
-    }
-
-    public void setEstado(int Estado) {
-        this.Estado = Estado;
-    }   
-
     public String getRolUsuaario() {
         return rolUsuaario;
     }
 
     public void setRolUsuaario(String rolUsuaario) {
         this.rolUsuaario = rolUsuaario;
+    }
+
+    public int getIdRol() {
+        return idRol;
+    }
+
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
     }
 
     public int getCantidadSolicitudes() {
@@ -201,6 +202,16 @@ public class UsuarioDTO {
     public void setCantidadSolicitudes(int cantidadSolicitudes) {
         this.cantidadSolicitudes = cantidadSolicitudes;
     }
-    
-    
+
+    public int getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(int Estado) {
+        this.Estado = Estado;
+    }
+
+ 
+
+   
 }

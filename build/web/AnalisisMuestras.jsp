@@ -16,7 +16,7 @@
                     <a href="MuestrasController?menu=AsignarItems" class="btn btn-outline-info" role="button" aria-pressed="true">Asignar Items</a>
                 </div>                
                 <hr>
-                
+                 ${msj}
                 <table id="example" class="table table-bordered table-striped small">
                     <thead>
                         <tr>
@@ -35,8 +35,8 @@
                     <tbody>
                         <c:forEach var="list" items="${listMuestras}">
                         <%! int contador = 1;%>
-                        <tr> 
-                            <td style="text-align: center"><%= contador%></td>
+                        <tr style="text-align: center"> 
+                            <td style="text-align: center"><%= contador%></td>                           
                             <td>${list.getNumMuestra()}</td>
                             <td>${list.getIdTipoMuestra()}</td>
                             <td>${list.getPresentacion()}</td>
@@ -44,13 +44,13 @@
                             <td style="text-align: center">${list.getIdUnidadMedida()}</td>
                             <td>${list.getAdjunto()}</td>
                             <td>${list.getFechaCreacion()}</td>
-                            <td>${list.getIdSolicitudes()}</td>
+                            <td>${list.getCantItems()}</td>
                             <td style="text-align: center">
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <a href="MuestrasController?menu=EliminarMuestra&id=${list.getIdMuestra()}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true" data-toggle="tooltip" title="Eliminar">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
-                                    <a href="MuestrasController?menu=AsignarItems&txtMuestra=${list.getNumMuestra()}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true" data-toggle="tooltip" title="Agregar Items">
+                                    <a href="MuestrasController?menu=AsignarItems&txtMuestra=${list.getIdMuestra()}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true" data-toggle="tooltip" title="Agregar Items">
                                         <i class="fas fa-cubes"></i>
                                     </a>
                                     <a href="MuestrasController?menu=CardarDatos&id=${list.getIdMuestra()}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true" data-toggle="tooltip" title="Editar">

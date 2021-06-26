@@ -27,14 +27,13 @@ public class TipoMuestraDTO {
     boolean Eliminado;
     int idSolicitudes ;
     int IdItems;
+    
+    int cantItems;
 
     public TipoMuestraDTO() {
     }
 
-    public TipoMuestraDTO(int IdTipoMuestra, String TipoMuestra, int IdUnidadMedida, 
-                            String UnidadMedida, int IdMuestra, String NumMuestra, String Presentacion,
-                            int CantidadUnidades, String Adjunto, Date FechaCreacion, Date FechaModificacion, boolean Eliminado, int idSolicitudes,
-                            int IdItems) {
+    public TipoMuestraDTO(int IdTipoMuestra, String TipoMuestra, int IdUnidadMedida, String UnidadMedida, int IdMuestra, String NumMuestra, String Presentacion, int CantidadUnidades, String Adjunto, Date FechaCreacion, Date FechaModificacion, boolean Eliminado, int idSolicitudes, int IdItems, int cantItems) {
         this.IdTipoMuestra = IdTipoMuestra;
         this.TipoMuestra = TipoMuestra;
         this.IdUnidadMedida = IdUnidadMedida;
@@ -49,6 +48,7 @@ public class TipoMuestraDTO {
         this.Eliminado = Eliminado;
         this.idSolicitudes = idSolicitudes;
         this.IdItems = IdItems;
+        this.cantItems = cantItems;
     }
 
     public int getIdTipoMuestra() {
@@ -146,7 +146,7 @@ public class TipoMuestraDTO {
     public void setEliminado(boolean Eliminado) {
         this.Eliminado = Eliminado;
     }
-    
+
     public int getIdSolicitudes() {
         return idSolicitudes;
     }
@@ -154,7 +154,7 @@ public class TipoMuestraDTO {
     public void setIdSolicitudes(int idSolicitudes) {
         this.idSolicitudes = idSolicitudes;
     }
-    
+
     public int getIdItems() {
         return IdItems;
     }
@@ -162,4 +162,14 @@ public class TipoMuestraDTO {
     public void setIdItems(int IdItems) {
         this.IdItems = IdItems;
     }
+
+    public int getCantItems() {
+        return cantItems;
+    }
+
+    public void setCantItems(int cantItems) {
+        this.cantItems = cantItems;
+    }
+
+  
 }

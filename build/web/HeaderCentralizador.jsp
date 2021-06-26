@@ -54,6 +54,14 @@
             }
         %>      
         
+        <%
+            ses.setAttribute("nobmre", ses.getAttribute("nombreUsuario"));
+            ses.setAttribute("apellido", ses.getAttribute("primerApellido"));
+            ses.setAttribute("idUsuario", ses.getAttribute("EntityID"));
+
+
+        %>  
+        
         <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
         
   
@@ -61,10 +69,11 @@
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="dropdown">
                     <button style="border: none;" class="btn btn-outline-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <% 
-                            out.println(ses.getAttribute("nombreUsuario"));
-                            out.println(ses.getAttribute("primerApellido"));
-                        %>                        
+                        <% out.println(ses.getAttribute("nombreUsuario"));
+                        out.println(ses.getAttribute("primerApellido"));%>
+                        
+                        
+                        
                     </button>
                     <div class="dropdown-menu text-center">
                         <a class="dropdown-item" href="#">
@@ -74,7 +83,8 @@
                         <a class="dropdown-item" href="#"><%out.println(ses.getAttribute("s1"));%></a>
                         <div class="dropdown-divider"></div>
                         <form action="Validar" method="POST">
-                            <a name="accion" value="Salir" class="dropdown-item" href="#" Role="">                                
+                            <a name="accion" value="Salir" class="dropdown-item" href="#" Role="">
+                                
                                 <%out.println("<a href=bienvenido.jsp?c=1 style='text-decoration:none;' role='button'><i class='fas fa-sign-in-alt'> </i> Salir</a>");%>
                             </a>
                         </form>
@@ -83,20 +93,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a style="margin-left: 10px; border: none" class="btn btn-outline-light" role="button" href="MuestrasController?menu=principal">
+                            <a style="margin-left: 10px; border: none" class="btn btn-outline-light" role="button" href="#">
                                 <i class="fa fa-home" aria-hidden="true"> </i> INICIO</a>
                         </li>
-                
                         <li class="nav-item">
-                            <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="MuestrasController?menu=analisis">Análisis de Muestra</a>
-                        </li>
-                
-                        <li class="nav-item">
-                            <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="SolicitudesController?menu=mantenimiento">Mantenimiento de Solicictudes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="AnalisisSolicitudesController?menu=AnalisisSolicitudes">Analisis de solicitudes</a>
-                        </li>
+                            <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="TrazabilidadController?menu=listarSolicitudesAsignadas">Mantenimieno de Solicitudes</a>
+                        </li>               
+                        
                     </ul>      
                 </div>
             </nav>
